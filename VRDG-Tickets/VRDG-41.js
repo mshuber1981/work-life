@@ -3,8 +3,21 @@ import axios from "axios";
 import { getAuthToken } from "../functions/Auth.js";
 import { CSVToArray } from "../functions/CSV.js";
 
+// Set environment - "NP" or "PROD"
+const env = "NP";
+// Declare url variables
+let qgiPrefsUrl, qgiPatchUrl;
+if (env.toUpperCase() === "NP") {
+  qgiPrefsUrl = process.env.QGI_PREFS;
+  qgiPatchUrl = process.env.QGI_META_PATCH;
+} else if (env.toUpperCase() === "PROD") {
+  qgiPrefsUrl = process.env.PROD_QGI_PREFS;
+  qgiPatchUrl = process.env.PROD_QGI_META_PATCH;
+} else {
+  throw new Error(`${env} is not a valid argument, please use "NP" or "PROD".`);
+}
 // Get token
-const authToken = await getAuthToken();
+const authToken = await getAuthToken(env);
 // Read CSV file
 const csvData = fs.readFileSync("./test.csv", "utf-8");
 // Covert to Array
@@ -20,11 +33,16 @@ for (let index = 0; index < csvArray.length; index++) {
   if (element[2].toUpperCase() === "YES") {
     // Get all of the current preferences
     const prefs = await axios
-      .get(process.env.QGI_PREFS + element[0], {
+      .get(qgiPrefsUrl + element[0], {
         headers: { Authorization: `Bearer ${authToken.access_token}` },
       })
       .then((response) => {
-        return response.data[0].instances[0].preferences;
+        if (response.status === 204) {
+          console.log(`${element[0]} not found...`);
+          return "ERROR";
+        } else {
+          return response.data[0].instances[0].preferences;
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -34,9 +52,12 @@ for (let index = 0; index < csvArray.length; index++) {
     // console.log(prefs);
 
     if (prefs === "ERROR") {
-      `Error attempting to get preferences for row ${index + 2} - ${
-        element[0]
-      }.`;
+      count--;
+      console.log(
+        `Error attempting to get preferences for row ${index + 2} - ${
+          element[0]
+        }.`
+      );
     } else {
       // Turn repetitions on for targeted Business Unit
       prefs[element[1]].repetitionNotAllowed = false;
@@ -54,7 +75,7 @@ for (let index = 0; index < csvArray.length; index++) {
       // console.log(allowReps[0].instances[0]);
 
       await axios
-        .patch(process.env.QGI_META_PATCH, allowReps, {
+        .patch(qgiPatchUrl, allowReps, {
           headers: { Authorization: `Bearer ${authToken.access_token}` },
         })
         .then(function () {
@@ -75,11 +96,16 @@ for (let index = 0; index < csvArray.length; index++) {
     } // If no, turn subsampling off
   } else if (element[2].toUpperCase() === "NO") {
     const prefs = await axios
-      .get(process.env.QGI_PREFS + element[0], {
+      .get(qgiPrefsUrl + element[0], {
         headers: { Authorization: `Bearer ${authToken.access_token}` },
       })
       .then((response) => {
-        return response.data[0].instances[0].preferences;
+        if (response.status === 204) {
+          console.log(`${element[0]} not found...`);
+          return "ERROR";
+        } else {
+          return response.data[0].instances[0].preferences;
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -89,9 +115,12 @@ for (let index = 0; index < csvArray.length; index++) {
     // console.log(prefs);
 
     if (prefs === "ERROR") {
-      `Error attempting to get preferences for row ${index + 2} - ${
-        element[0]
-      }.`;
+      count--;
+      console.log(
+        `Error attempting to get preferences for row ${index + 2} - ${
+          element[0]
+        }.`
+      );
     } else {
       // Turn subsampling off for targeted business unit
       prefs[element[1]].subsamplesAllowed = false;
@@ -109,7 +138,7 @@ for (let index = 0; index < csvArray.length; index++) {
       // console.log(disableSub[0].instances[0]);
 
       await axios
-        .patch(process.env.QGI_META_PATCH, disableSub, {
+        .patch(qgiPatchUrl, disableSub, {
           headers: { Authorization: `Bearer ${authToken.access_token}` },
         })
         .then(function () {
