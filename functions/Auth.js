@@ -5,36 +5,47 @@ dotenv.config();
 import axios from "axios";
 // https://www.npmjs.com/package/axios-oauth-client
 import oauth from "axios-oauth-client";
+import { execPromise } from "./General.js";
+
+let npVault, prodVault;
+
+// Get cleint IDs and secrets from vault
+try {
+  const npData = await execPromise(
+    "vault read -format=json secret/spirit/oauth/QandA-NP/"
+  );
+  const prodData = await execPromise(
+    "vault read -format=json secret/spirit/oauth/QandA-Prod/"
+  );
+  npVault = JSON.parse(npData);
+  prodVault = JSON.parse(prodData);
+} catch (error) {
+  console.error(error.message);
+}
 
 // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
 const getAuth = oauth.clientCredentials(
   axios.create(),
-  // secret/spirit/urls/np/aad-oauth-url
   process.env.OAUTH_ENDPOINT,
-  // secret/spirit/oauth/QandA-NP/client_id
-  process.env.CLIENT_ID,
-  // secret/spirit/oauth/QandA-NP/secret
-  process.env.CLIENT_SECRET
+  npVault.data.client_id,
+  npVault.data.secret
 );
 
 const getProdAuth = oauth.clientCredentials(
   axios.create(),
-  // secret/spirit/urls/np/aad-oauth-url
   process.env.OAUTH_ENDPOINT,
-  // secret/spirit/oauth/QandA-NP/client_id
-  process.env.PROD_CLIENT_ID,
-  // secret/spirit/oauth/QandA-NP/secret
-  process.env.PROD_CLIENT_SECRET
+  prodVault.data.client_id,
+  prodVault.data.secret
 );
 
 export async function getAuthToken(env = "np") {
   try {
     if (env.toUpperCase() === "NP") {
-      const auth = await getAuth(`${process.env.CLIENT_ID}/.default`);
+      const auth = await getAuth(`${npVault.data.client_id}/.default`);
 
       return auth;
     } else if (env.toUpperCase() === "PROD") {
-      const auth = await getProdAuth(`${process.env.PROD_CLIENT_ID}/.default`);
+      const auth = await getProdAuth(`${prodVault.data.client_id}/.default`);
 
       return auth;
     } else {
