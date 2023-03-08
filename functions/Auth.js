@@ -5,17 +5,17 @@ dotenv.config();
 import axios from "axios";
 // https://www.npmjs.com/package/axios-oauth-client
 import oauth from "axios-oauth-client";
-import { execPromise } from "./General.js";
+import { execPromise, isRequired } from "./General.js";
 
 let npVault, prodVault;
 
 // Get cleint IDs and secrets from vault
 try {
   const npData = await execPromise(
-    "vault read -format=json secret/spirit/oauth/QandA-NP/"
+    `vault read -format=json ${process.env.NP_SECRETS}`
   );
   const prodData = await execPromise(
-    "vault read -format=json secret/spirit/oauth/QandA-Prod/"
+    `vault read -format=json ${process.env.PROD_SECRETS}`
   );
   npVault = JSON.parse(npData);
   prodVault = JSON.parse(prodData);
@@ -38,7 +38,7 @@ const getProdAuth = oauth.clientCredentials(
   prodVault.data.secret
 );
 
-export async function getAuthToken(env = "np") {
+export async function getAuthToken(env = isRequired("env (NP or PROD)")) {
   try {
     if (env.toUpperCase() === "NP") {
       const auth = await getAuth(`${npVault.data.client_id}/.default`);
