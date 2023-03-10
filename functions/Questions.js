@@ -5,8 +5,8 @@ import { isRequired } from "./General.js";
 export async function getQuestionUomValues(
   authToken = isRequired("authToken"),
   env = isRequired("env (NP or PROD)"),
-  qCode = "PATHOGEN",
-  uom = "SCINAME"
+  qCode = isRequired("Question Code"),
+  uom = isRequired("UOM")
 ) {
   try {
     if (env.toUpperCase() !== "NP" && env.toUpperCase() !== "PROD") {
@@ -33,7 +33,7 @@ export async function getQuestionUomValues(
       console.log(
         `${
           response.data.rule.values.length
-        } answers for ${qCode.toUpperCase()} found.`
+        } answers found for Question code ${qCode.toUpperCase()} and UOM ${uom.toUpperCase()}.`
       );
       return response.data.rule.values;
     }
