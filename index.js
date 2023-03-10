@@ -1,27 +1,12 @@
 import fs from "fs";
-import { execPromise } from "./functions/General.js";
+import { getAuthToken } from "./functions/Auth.js";
 import { CSVToArray } from "./functions/CSV.js";
+import { getQuestionUomValues } from "./functions/Questions.js";
 
 // Set CSV file name
 const csvFileName = "test";
-
-let npVault, prodVault;
-
-// Get cleint IDs and secrets from vault
-try {
-  const npData = await execPromise(
-    "vault read -format=json secret/spirit/oauth/QandA-NP/"
-  );
-  const prodData = await execPromise(
-    "vault read -format=json secret/spirit/oauth/QandA-Prod/"
-  );
-  npVault = JSON.parse(npData);
-  prodVault = JSON.parse(prodData);
-} catch (error) {
-  console.error(error.message);
-}
-
-console.log(npVault.data, prodVault.data);
+// Get token
+const authToken = await getAuthToken("NP");
 
 try {
   // Read CSV file
@@ -33,3 +18,7 @@ try {
 } catch (error) {
   console.log(`${error.message} (check csvFilename - line 6)`);
 }
+
+getQuestionUomValues(authToken, "NP").then((response) =>
+  console.log(`The first answer in the list is ${response[0].value}`)
+);
