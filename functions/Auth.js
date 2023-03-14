@@ -7,7 +7,7 @@ import axios from "axios";
 import oauth from "axios-oauth-client";
 import { execPromise, isRequired } from "./General.js";
 
-let npVault, prodVault;
+let npVault, prodVault, oauthEndpoint;
 
 // Get cleint IDs and secrets from vault
 try {
@@ -17,8 +17,12 @@ try {
   const prodData = await execPromise(
     `vault read -format=json ${process.env.PROD_SECRETS}`
   );
+  const oauthData = await execPromise(
+    `vault read -format=json ${process.env.OAUTH_ENDPOINT}`
+  );
   npVault = JSON.parse(npData);
   prodVault = JSON.parse(prodData);
+  oauthEndpoint = JSON.parse(oauthData);
 } catch (error) {
   console.error(error.message);
 }
@@ -26,14 +30,14 @@ try {
 // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
 const getAuth = oauth.clientCredentials(
   axios.create(),
-  process.env.OAUTH_ENDPOINT,
+  oauthEndpoint.data["aad-oauth-url"],
   npVault.data.client_id,
   npVault.data.secret
 );
 
 const getProdAuth = oauth.clientCredentials(
   axios.create(),
-  process.env.OAUTH_ENDPOINT,
+  oauthEndpoint.data["aad-oauth-url"],
   prodVault.data.client_id,
   prodVault.data.secret
 );
