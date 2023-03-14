@@ -1,10 +1,12 @@
 import fs from "fs";
+import path from "path";
 import axios from "axios";
 import { getAuthToken } from "../functions/Auth.js";
 import { CSVToArray } from "../functions/CSV.js";
 
 // Set environment - "NP" or "PROD"
 const env = "NP";
+
 // Declare url variables
 let qgiPrefsUrl, qgiPatchUrl;
 if (env.toUpperCase() === "NP") {
@@ -19,7 +21,10 @@ if (env.toUpperCase() === "NP") {
 // Get token
 const authToken = await getAuthToken(env);
 // Read CSV file
-const csvData = fs.readFileSync("./test.csv", "utf-8");
+const csvData = fs.readFileSync(
+  path.resolve("VRDG-Tickets", "VRDG-41.csv"),
+  "utf-8"
+);
 // Covert to Array
 const csvArray = CSVToArray(csvData, ",", true);
 let count = csvArray.length;
