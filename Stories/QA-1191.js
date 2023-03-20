@@ -3,7 +3,7 @@ import axios from "axios";
 import { getAuthToken } from "../functions/Auth.js";
 
 // Get token
-const authToken = await getAuthToken();
+const authToken = await getAuthToken("NP");
 
 // Get a list of all the formula components
 const list = await axios
