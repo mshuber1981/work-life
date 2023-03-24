@@ -1,15 +1,26 @@
+import path from "path";
 // https://www.npmjs.com/package/objects-to-csv
 import ObjectsToCsv from "objects-to-csv";
+import { isRequired } from "./General.js";
 
-export async function convertToCsv(csvData = isRequired("csvData Array")) {
-  // Convert csvData object to a csv file - https://github.com/anton-bot/objects-to-csv#usage
+// Covert objects to CSV file
+export async function convertToCsv(
+  csvData = isRequired("csvData Array"),
+  pathName = isRequired('path (example - "directory/another_directory")'),
+  fileName = isRequired("filename (do not include .csv)")
+) {
+  // Convert csvData objects to a csv file - https://github.com/anton-bot/objects-to-csv#usage
   const csv = new ObjectsToCsv(csvData);
   // Save to file:
-  await csv.toDisk("./Taxa_Info.csv");
-  // Return the CSV file as string:
+  await csv.toDisk(path.resolve(pathName, `${fileName}.csv`));
 }
 
-export function CSVToArray(data, delimiter = ",", omitFirstRow = false) {
+// Covert CSV data to an array
+export function CSVToArray(
+  data = isRequired("CSV data"),
+  delimiter = ",",
+  omitFirstRow = true
+) {
   let tempData = data
     .slice(omitFirstRow ? data.indexOf("\n") + 1 : 0)
     .split("\n")
