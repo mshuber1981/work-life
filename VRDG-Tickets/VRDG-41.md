@@ -1,6 +1,4 @@
-# [VRDG-41](https://monsanto.aha.io/features/VRDG-41)
-
-For this ticket, there were a number of QGIs in Non Prod that had subsampling enabled without repetitions enabled.
+# VRDG-41
 
 Read from a CSV file containing 3 columns (see the sample CSV file VRDG-41.csv):
 
