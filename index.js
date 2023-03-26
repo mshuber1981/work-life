@@ -22,6 +22,7 @@ try {
   console.log(`${error.message} (check csvFilename - line 6)`);
 }
 
+// Get a list of valid answers for each Question and UOM combination
 for (let index = 0; index < csvArray.length; index++) {
   const element = csvArray[index];
   try {
@@ -34,7 +35,10 @@ for (let index = 0; index < csvArray.length; index++) {
       element[0],
       element[1]
     );
-    console.log(`The first answer in the list is ${response[0].value}`);
+    console.log(response);
+    if (typeof response === "object") {
+      console.log(`The first answer in the list is ${response[0].value}`);
+    }
   } catch (error) {
     console.log(error);
   }
