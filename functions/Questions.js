@@ -1,7 +1,7 @@
 import axios from "axios";
 import { isRequired } from "./General.js";
 
-// Get a list of valid answers for a Question and unit of measure
+// Get a list of valid answers for a Question code and UOM
 export async function getQuestionUomValues(
   authToken = isRequired("authToken"),
   env = isRequired("env (NP or PROD)"),
@@ -17,10 +17,10 @@ export async function getQuestionUomValues(
 
     const response = await axios.get(
       env === "NP"
-        ? process.env.VALIDATION_ENDPOINT +
-            `${qCode.toUpperCase()}/uom/${uom.toUpperCase()}`
-        : process.env.PROD_VALIDATION_ENDPOINT +
-            `${qCode.toUpperCase()}/uom/${uom.toUpperCase()}`,
+        ? process.env.QUESTIONS +
+            `validation/question/${qCode.toUpperCase()}/uom/${uom.toUpperCase()}`
+        : process.env.PROD_QUESTIONS +
+            `validation/question/${qCode.toUpperCase()}/uom/${uom.toUpperCase()}`,
       {
         headers: { Authorization: `Bearer ${authToken.access_token}` },
       }
@@ -30,12 +30,17 @@ export async function getQuestionUomValues(
         `Status: ${response.status}, Status Text: ${response.statusText}`
       );
     } else {
-      console.log(
-        `${
-          response.data.rule.values.length
-        } answers found for Question code ${qCode.toUpperCase()} and UOM ${uom.toUpperCase()}.`
-      );
-      return response.data.rule.values;
+      if (response.data.rule.values) {
+        console.log(
+          `${
+            response.data.rule.values.length
+          } answers found for Question code ${qCode.toUpperCase()} and UOM ${uom.toUpperCase()}.`
+        );
+        return response.data.rule.values;
+      } else {
+        console.log(JSON.stringify(response.data.rule));
+        return response.data.rule.values;
+      }
     }
   } catch (error) {
     throw new Error(error);
