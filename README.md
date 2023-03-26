@@ -10,7 +10,7 @@ This repo is a collection of lengthy, repetitive, mind-numbing, and ultimately u
 
 1. [.env file](https://www.npmjs.com/package/dotenv) - I am using a local .env file to access sensitive info like API urls
 
-2. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access client IDs, secrets, and a authentication url to get a token for API calls [here](./functions/Auth.js)
+2. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access secrets for API calls ([example](./functions/Auth.js))
 
 3. [Google Cloud](https://cloud.google.com/sdk/docs/install#mac) - I am using the gcloud CLI to authenticate and access bigQuery
 
