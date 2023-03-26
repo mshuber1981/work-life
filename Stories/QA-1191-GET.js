@@ -7,7 +7,7 @@ const authToken = await getAuthToken("NP");
 
 // Get a list of all the formula components
 const list = await axios
-  .get(process.env.FORMULA_COMPONENTS_ENDPOINT, {
+  .get(process.env.CALCULATED_ANSWERS + "formula-components", {
     headers: { Authorization: `Bearer ${authToken.access_token}` },
   })
   .then((response) => {

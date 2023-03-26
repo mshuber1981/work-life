@@ -23,9 +23,12 @@ for (let index = 0; index < csvArray.length; index++) {
   const element = csvArray[index];
 
   await axios
-    .get(process.env.FORMULA_COMPONENTS_ENDPOINT + "?id=" + element[0], {
-      headers: { Authorization: `Bearer ${authToken.access_token}` },
-    })
+    .get(
+      process.env.CALCULATED_ANSWERS + "formula-components?id=" + element[0],
+      {
+        headers: { Authorization: `Bearer ${authToken.access_token}` },
+      }
+    )
     .then((response) => {
       // Update the saveIdsFromComponent key
       response.data[0].saveIdsFromComponent = element[1];
@@ -51,7 +54,7 @@ for (let index = 0; index < putData.length; index++) {
 
   tempData.push(element);
   await axios
-    .put(process.env.FORMULA_COMPONENTS_ENDPOINT, tempData, {
+    .put(process.env.CALCULATED_ANSWERS + "formula-components", tempData, {
       headers: { Authorization: `Bearer ${authToken.access_token}` },
     })
     .then(function () {
