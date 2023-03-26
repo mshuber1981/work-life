@@ -42,9 +42,12 @@ const jsonList = JSON.stringify(newList);
 
 // console.log(newList);
 
-// Create a json file with the targeted formulat components
+// Create a json file with the targeted formula components
 fs.writeFile("./saveIdsFromComponentNull.json", jsonList, (err) => {
   if (err) {
     console.error(err);
   }
+  console.log(
+    `Exported ${newList.length} record(s) to saveIdsFromComponentNull.json`
+  );
 });
