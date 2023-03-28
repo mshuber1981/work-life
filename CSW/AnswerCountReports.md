@@ -1,0 +1,86 @@
+# CSW Answer Count Report
+
+1. [getAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L13) - Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.
+
+2. [getQgiAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L108) - Get answer counts and other useful metadata from NP and Prod for each QGI.
+
+## Example usage
+
+[AnswerCountReport.js](./AnswerCountReports.js)
+
+```javascript
+// Read CSV file of Question codes
+const bQcsvData = fs.readFileSync(path.resolve("CSW", "bigQuery.csv"), "utf-8");
+// Covert to Array
+const bQcsvArray = CSVToArray(bQcsvData);
+
+// Get Questions answer count report - getAnswerCounts(bQcsvArray, "Y") to export a csv file
+const results = await getAnswerCounts(bQcsvArray);
+const QGIs = results.QGIs;
+
+console.log(results);
+
+// Get QGI answer count report - getQgiAnswerCounts(QGIs, "Y") to export a csv file
+const qgiResults = await getQgiAnswerCounts(QGIs);
+
+console.log(qgiResults);
+```
+
+### getAnswerCounts Results
+
+```javascript
+{
+  csvData: [
+    {
+      questionCode: 'PBCH',
+      np_primary_answer_count: 4,
+      np_secondary_answer_count: 0,
+      np_QGIs: [Array],
+      prod_primary_answer_count: 0,
+      prod_secondary_answer_count: 0,
+      prod_QGIs: []
+    },
+    {
+      questionCode: 'DRYINDT',
+      np_primary_answer_count: 0,
+      np_secondary_answer_count: 0,
+      np_QGIs: [],
+      prod_primary_answer_count: 100,
+      prod_secondary_answer_count: 0,
+      prod_QGIs: [Array]
+    }
+  ],
+  QGIs: [ [ 'C2959-I3' ], [ 'C3595-I1' ] ]
+}
+```
+
+### getQgiAnswerCounts
+
+```javascript
+[
+  {
+    QGI: "C2959-I3",
+    is_deactivated: "false",
+    primary_question: "PBCH",
+    taxa: "Broccoli",
+    np_answer_count: 4,
+    np_answer_time: "2022-03-16T04:29:09.119Z",
+    np_update_time: "2022-03-16T10:41:46.372Z",
+    prod_answer_count: 0,
+    prod_answer_time: "",
+    prod_update_time: "",
+  },
+  {
+    QGI: "C3595-I1",
+    is_deactivated: "false",
+    primary_question: "DRYINDT",
+    taxa: "Corn",
+    np_answer_count: 0,
+    np_answer_time: "",
+    np_update_time: "",
+    prod_answer_count: 100,
+    prod_answer_time: "2022-03-22T19:08:17.357Z",
+    prod_update_time: "2022-03-22T20:05:01.180Z",
+  },
+];
+```
