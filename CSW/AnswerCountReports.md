@@ -54,6 +54,8 @@ console.log(qgiResults);
 }
 ```
 
+[Example CSV output](./Question_Answer_Counts.csv)
+
 ### getQgiAnswerCounts
 
 ```javascript
@@ -84,3 +86,5 @@ console.log(qgiResults);
   },
 ];
 ```
+
+[Example CSV output](./QGI_Answer_Counts.csv)
