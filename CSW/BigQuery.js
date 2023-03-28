@@ -9,7 +9,7 @@ import { BigQuery } from "@google-cloud/bigquery";
 
 const bigquery = new BigQuery();
 
-// Get the primary and secondary answer count from NP and Prod for each Question code
+// Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.
 export async function getAnswerCounts(
   arr = isRequired("Array of Question codes"),
   exp = "NO"
@@ -105,7 +105,7 @@ export async function getAnswerCounts(
   }
 }
 
-// Get answer counts and other useful metadata from NP and Prod for each QGI
+// Get answer counts and other useful metadata from NP and Prod for each QGI.
 export async function getQgiAnswerCounts(
   arr = isRequired("Array of QGIs"),
   exp = "NO"
