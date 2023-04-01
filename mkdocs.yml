@@ -48,3 +48,13 @@ extra:
 
 nav:
   - Home: index.md
+  - Recent Projects: recent.md
+  - Functions:
+      - My Wheels: functions/index.md
+      - Oauth2 Tokens: functions/auth.md
+      - CSV Files: functions/csv.md
+      - General Stuff: functions/general.md
+  - RESTful APIs:
+      - JSON Lingo: rest/index.md
+  - BigQuery:
+      - Getting Started: bigquery/index.md
