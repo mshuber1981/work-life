@@ -1,6 +1,8 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import axios from "axios";
+// https://github.com/npkgz/cli-progress
+import cliProgress from "cli-progress";
 import { isRequired } from "../functions/General.js";
 import { getAuthToken } from "../functions/Auth.js";
 import { convertToCsv } from "../functions/CSV.js";
@@ -19,7 +21,16 @@ export async function getAnswerCounts(
   const getQGIs = [];
 
   if (arr.length !== 0) {
+    console.log("");
     console.log(`Evaluating ${arr.length} Question codes(s)...`);
+    console.log("");
+
+    const answerCounts = new cliProgress.SingleBar(
+      {},
+      cliProgress.Presets.shades_classic
+    );
+
+    answerCounts.start(arr.length, 0);
 
     for (let index = 0; index < arr.length; index++) {
       const element = arr[index];
@@ -73,6 +84,7 @@ export async function getAnswerCounts(
         csvOutDataObj.prod_secondary_answer_count =
           prodResult[0].secondary_answer_count;
         csvOutData.push(csvOutDataObj);
+        answerCounts.increment();
       } catch (error) {
         if (error.errors) {
           console.log(error.errors[0].message);
@@ -85,23 +97,31 @@ export async function getAnswerCounts(
     // console.log(getQGIs);
     // console.log(csvOutData);
 
+    answerCounts.stop();
+
     if (exp.toUpperCase() === "YES" || exp.toUpperCase() === "Y") {
       // Export to CSV file
       await convertToCsv(csvOutData, "./", "Question_Answer_Counts");
 
+      console.log("");
       console.log(
         `Exported ${csvOutData.length} record(s) to Question_Answer_Counts.csv`
       );
+      console.log("");
     }
 
+    console.log("");
     console.log(`Returning data for ${csvOutData.length} record(s).`);
+    console.log("");
     getQGIs.forEach((element) => {
       returnData.QGIs.push([element]);
     });
     returnData.csvData = [...csvOutData];
     return returnData;
   } else {
+    console.log("");
     console.log("No Questions found... ¯\\_(ツ)_/¯");
+    console.log("");
   }
 }
 
@@ -113,7 +133,16 @@ export async function getQgiAnswerCounts(
   const qgiCsvOutData = [];
 
   if (arr.length !== 0) {
+    console.log("");
     console.log(`Evaluating ${arr.length} QGI(s)...`);
+    console.log("");
+
+    const qgiAnswerCounts = new cliProgress.SingleBar(
+      {},
+      cliProgress.Presets.shades_classic
+    );
+
+    qgiAnswerCounts.start(arr.length, 0);
 
     for (let index = 0; index < arr.length; index++) {
       const element = arr[index];
@@ -197,6 +226,7 @@ export async function getQgiAnswerCounts(
         }
 
         qgiCsvOutData.push(csvOutDataObj);
+        qgiAnswerCounts.increment();
       } catch (error) {
         if (error.errors) {
           console.log(error.errors[0].message);
@@ -208,18 +238,26 @@ export async function getQgiAnswerCounts(
 
     // console.log(qgiCsvOutData);
 
+    qgiAnswerCounts.stop();
+
     if (exp.toUpperCase() === "YES" || exp.toUpperCase() === "Y") {
       // Export to CSV file
       await convertToCsv(qgiCsvOutData, "./", "QGI_Answer_Counts");
 
+      console.log("");
       console.log(
         `Exported ${qgiCsvOutData.length} record(s) to QGI_Answer_Counts.csv`
       );
+      console.log("");
     }
 
+    console.log("");
     console.log(`Returning data for ${qgiCsvOutData.length} record(s).`);
+    console.log("");
     return qgiCsvOutData;
   } else {
+    console.log("");
     console.log("No QGIs found... ¯\\_(ツ)_/¯");
+    console.log("");
   }
 }
