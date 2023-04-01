@@ -2,7 +2,7 @@
 
 1. [getAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L13) - Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.
 
-2. [getQgiAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L108) - Get answer counts and other useful metadata from NP and Prod for each QGI.
+2. [getQgiAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L108) - Get the answer counts and other useful metadata from NP and Prod for each QGI.
 
 ## Example usage
 
@@ -18,12 +18,12 @@ const bQcsvArray = CSVToArray(bQcsvData);
 const results = await getAnswerCounts(bQcsvArray);
 const QGIs = results.QGIs;
 
-console.log(results);
+console.log(util.inspect(results, false, null, true));
 
 // Get QGI answer count report - getQgiAnswerCounts(QGIs, "Y") to export a csv file
 const qgiResults = await getQgiAnswerCounts(QGIs);
 
-console.log(qgiResults);
+console.log(util.inspect(qgiResults, false, null, true));
 ```
 
 ### getAnswerCounts Results
@@ -35,7 +35,7 @@ console.log(qgiResults);
       questionCode: 'PBCH',
       np_primary_answer_count: 4,
       np_secondary_answer_count: 0,
-      np_QGIs: [Array],
+      np_QGIs: [ 'C2959-I3' ],
       prod_primary_answer_count: 0,
       prod_secondary_answer_count: 0,
       prod_QGIs: []
@@ -47,7 +47,7 @@ console.log(qgiResults);
       np_QGIs: [],
       prod_primary_answer_count: 100,
       prod_secondary_answer_count: 0,
-      prod_QGIs: [Array]
+      prod_QGIs: [ 'C3595-I1' ]
     }
   ],
   QGIs: [ [ 'C2959-I3' ], [ 'C3595-I1' ] ]

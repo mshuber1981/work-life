@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import util from "util";
 import { CSVToArray } from "../functions/CSV.js";
 import { getAnswerCounts, getQgiAnswerCounts } from "./BigQuery.js";
 
@@ -12,9 +13,9 @@ const bQcsvArray = CSVToArray(bQcsvData);
 const results = await getAnswerCounts(bQcsvArray);
 const QGIs = results.QGIs;
 
-console.log(results);
+console.log(util.inspect(results, false, null, true));
 
 // Get QGI answer count report - getQgiAnswerCounts(QGIs, "Y") to export a csv file
 const qgiResults = await getQgiAnswerCounts(QGIs);
 
-console.log(qgiResults);
+console.log(util.inspect(qgiResults, false, null, true));
