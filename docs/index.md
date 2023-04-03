@@ -6,6 +6,16 @@ This repo is a collection of lengthy, repetitive, and ultimately unsatisfying ta
 
 — Bill Gates
 
+## The usual
+
+If my work life was a story, every chapter would start off something like this...
+
+> I did not realize these things had these properties! I wonder how many of these things exist with this, that, or the other thing? If I give you a list of the things I care about, can you do a "search" and give me a list of things that have the properties I am looking for?
+
+— Ends (aka End Users)
+
+![The Usual diagram](./media/the_usual.png)
+
 ## Requirements
 
 1. [.env file](https://www.npmjs.com/package/dotenv) - I am using a local .env file to access sensitive info like API urls
@@ -19,11 +29,3 @@ This repo is a collection of lengthy, repetitive, and ultimately unsatisfying ta
    ```bash
    gcloud auth application-default login
    ```
-
-## The usual
-
-If my work life was a story, every chapter would start off something like this...
-
-> I did not realize these things had these properties! I wonder how many of these things exist with this, that, or the other thing? If I give you a list of the things I care about, can you do a "search" and give me a list of things that have the properties I am looking for?
-
-— Ends (aka End Users)
