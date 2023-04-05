@@ -14,11 +14,11 @@ If my work life was a story, every chapter would start off something like this..
 
 — Ends (aka End Users)
 
-![The Usual diagram](./media/the_usual.png)
+[![The Usual diagram](./media/the_usual.png)](https://github.com/mshuber1981/work-life/blob/main/docs/media/the_usual.png)
 
 ## Requirements
 
-1. [.env file](https://www.npmjs.com/package/dotenv) - I am using a local .env file to access sensitive info like API urls
+1. [.env file](https://github.com/motdotla/dotenv) - I am using a local .env file to access sensitive info like API urls
 
 2. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access secrets for API calls ([example](https://github.com/mshuber1981/work-life/blob/main/functions/Auth.js#L12))
 
