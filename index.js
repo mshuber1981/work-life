@@ -1,7 +1,7 @@
 import fs from "fs";
-import { getAuthToken } from "./functions/Auth.js";
-import { CSVToArray } from "./functions/CSV.js";
-import { getQuestionUomValues } from "./functions/Questions.js";
+import { getAuthToken } from "./present/functions/Auth.js";
+import { CSVToArray } from "./present/functions/CSV.js";
+import { getQuestionUomValues } from "./present/functions/Questions.js";
 
 // Set CSV file name
 const csvFileName = "test";
@@ -35,9 +35,11 @@ for (let index = 0; index < csvArray.length; index++) {
       element[0],
       element[1]
     );
-    console.log(response);
+
     if (typeof response === "object") {
       console.log(`The first answer in the list is ${response[0].value}`);
+    } else {
+      console.log(response);
     }
   } catch (error) {
     console.log(error);
