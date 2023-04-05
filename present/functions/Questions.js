@@ -38,8 +38,7 @@ export async function getQuestionUomValues(
         );
         return response.data.rule.values;
       } else {
-        console.log(JSON.stringify(response.data.rule));
-        return response.data.rule.values;
+        return JSON.stringify(response.data.rule);
       }
     }
   } catch (error) {
