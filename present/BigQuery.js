@@ -3,9 +3,9 @@ dotenv.config();
 import axios from "axios";
 // https://github.com/npkgz/cli-progress
 import cliProgress from "cli-progress";
-import { isRequired } from "../functions/General.js";
-import { getAuthToken } from "../functions/Auth.js";
-import { convertToCsv } from "../functions/CSV.js";
+import { isRequired } from "./functions/General.js";
+import { getAuthToken } from "./functions/Auth.js";
+import { convertToCsv } from "./functions/CSV.js";
 // https://cloud.google.com/nodejs/docs/reference/bigquery/latest
 import { BigQuery } from "@google-cloud/bigquery";
 
