@@ -1,9 +1,9 @@
-// https://www.npmjs.com/package/dotenv
+// https://github.com/motdotla/dotenv
 import * as dotenv from "dotenv";
 dotenv.config();
-// https://www.npmjs.com/package/axios
+// https://github.com/axios/axios
 import axios from "axios";
-// https://www.npmjs.com/package/axios-oauth-client
+// https://github.com/compwright/axios-oauth-client
 import oauth from "axios-oauth-client";
 import { execPromise, isRequired } from "./General.js";
 
