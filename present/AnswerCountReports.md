@@ -1,16 +1,23 @@
-# CSW Answer Count Report
+# Answer Count Report
 
-1. [getAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L13) - Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.
+Problem - How many primary and secondary answers are there in each environment for a list of codes? What metadata is associated with those answers?
 
-2. [getQgiAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/CSW/BigQuery.js#L108) - Get the answer counts and other useful metadata from NP and Prod for each QGI.
+Solution:
+
+1. [getAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/present/BigQuery.js#L13) - Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.
+
+2. [getQgiAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/present/BigQuery.js#L108) - Get the answer counts and other useful metadata from NP and Prod for each QGI.
 
 ## Example usage
 
-[AnswerCountReport.js](./AnswerCountReports.js)
+[AnswerCountReport.js](https://github.com/mshuber1981/work-life/blob/main/present/AnswerCountReports.js)
 
 ```javascript
 // Read CSV file of Question codes
-const bQcsvData = fs.readFileSync(path.resolve("CSW", "bigQuery.csv"), "utf-8");
+const bQcsvData = fs.readFileSync(
+  path.resolve("present", "bigQuery.csv"),
+  "utf-8"
+);
 // Covert to Array
 const bQcsvArray = CSVToArray(bQcsvData);
 
@@ -54,7 +61,7 @@ console.log(util.inspect(qgiResults, false, null, true));
 }
 ```
 
-[Example CSV output](./Question_Answer_Counts.csv)
+[Example CSV output](https://github.com/mshuber1981/work-life/blob/main/present/Question_Answer_Counts.csv)
 
 ### getQgiAnswerCounts
 
@@ -87,4 +94,4 @@ console.log(util.inspect(qgiResults, false, null, true));
 ];
 ```
 
-[Example CSV output](./QGI_Answer_Counts.csv)
+[Example CSV output](https://github.com/mshuber1981/work-life/blob/main/present/QGI_Answer_Counts.csv)
