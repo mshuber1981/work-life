@@ -2,7 +2,7 @@
 
 Problem - How many primary and secondary answers are there in each environment for a list of codes? What metadata is associated with those answers?
 
-Solution:
+Solution ([Node.js](https://nodejs.org/en) + [BigQuery](https://cloud.google.com/bigquery)):
 
 1. [getAnswerCounts](https://github.com/mshuber1981/work-life/blob/main/present/BigQuery.js#L13) - Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.
 
@@ -10,7 +10,7 @@ Solution:
 
 ## Example usage
 
-[AnswerCountReport.js](https://github.com/mshuber1981/work-life/blob/main/present/AnswerCountReports.js)
+### [AnswerCountReport.js](https://github.com/mshuber1981/work-life/blob/main/present/AnswerCountReports.js)
 
 ```javascript
 // Read CSV file of Question codes
@@ -33,7 +33,7 @@ const qgiResults = await getQgiAnswerCounts(QGIs);
 console.log(util.inspect(qgiResults, false, null, true));
 ```
 
-### getAnswerCounts Results
+### getAnswerCounts results
 
 ```javascript
 {
@@ -63,7 +63,7 @@ console.log(util.inspect(qgiResults, false, null, true));
 
 [Example CSV output](https://github.com/mshuber1981/work-life/blob/main/present/Question_Answer_Counts.csv)
 
-### getQgiAnswerCounts
+### getQgiAnswerCounts results
 
 ```javascript
 [
