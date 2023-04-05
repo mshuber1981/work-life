@@ -72,6 +72,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#answer-count-report" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -262,10 +267,70 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Recent Projects
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Recent Projects
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    Example usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Example usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#answercountreportjs" class="md-nav__link">
+    AnswerCountReport.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getanswercounts-results" class="md-nav__link">
+    getAnswerCounts results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getqgianswercounts-results" class="md-nav__link">
+    getQgiAnswerCounts results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -477,6 +542,50 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    Example usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Example usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#answercountreportjs" class="md-nav__link">
+    AnswerCountReport.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getanswercounts-results" class="md-nav__link">
+    getAnswerCounts results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getqgianswercounts-results" class="md-nav__link">
+    getQgiAnswerCounts results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -494,9 +603,93 @@
   
 
 
-  <h1>Recent Projects</h1>
-
-
+<h1 id="answer-count-report">Answer Count Report</h1>
+<p>Problem - How many primary and secondary answers are there in each environment for a list of codes (<a href="https://github.com/mshuber1981/work-life/blob/main/present/bigQuery.csv">bigQuery.csv</a>)? What metadata is associated with those answers?</p>
+<p>Solution (<a href="https://nodejs.org/en">Node.js</a> + <a href="https://cloud.google.com/bigquery">BigQuery</a>):</p>
+<ol>
+<li>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/BigQuery.js#L13">getAnswerCounts</a> - Get the primary and secondary answer counts from NP and Prod for each Question code, and a list of all the related QGIs.</p>
+</li>
+<li>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/BigQuery.js#L108">getQgiAnswerCounts</a> - Get the answer counts and other useful metadata from NP and Prod for each QGI.</p>
+</li>
+</ol>
+<h2 id="example-usage">Example usage</h2>
+<h3 id="answercountreportjs"><a href="https://github.com/mshuber1981/work-life/blob/main/present/AnswerCountReports.js">AnswerCountReport.js</a></h3>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><span class="c1">// Read CSV file of Question codes</span>
+</span><span id="__span-0-2"><span class="kd">const</span><span class="w"> </span><span class="nx">bQcsvData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span>
+</span><span id="__span-0-3"><span class="w">  </span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;present&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bigQuery.csv&quot;</span><span class="p">),</span>
+</span><span id="__span-0-4"><span class="w">  </span><span class="s2">&quot;utf-8&quot;</span>
+</span><span id="__span-0-5"><span class="p">);</span>
+</span><span id="__span-0-6"><span class="c1">// Covert to Array</span>
+</span><span id="__span-0-7"><span class="kd">const</span><span class="w"> </span><span class="nx">bQcsvArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">CSVToArray</span><span class="p">(</span><span class="nx">bQcsvData</span><span class="p">);</span>
+</span><span id="__span-0-8">
+</span><span id="__span-0-9"><span class="c1">// Get Questions answer count report - getAnswerCounts(bQcsvArray, &quot;Y&quot;) to export a csv file</span>
+</span><span id="__span-0-10"><span class="kd">const</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getAnswerCounts</span><span class="p">(</span><span class="nx">bQcsvArray</span><span class="p">);</span>
+</span><span id="__span-0-11"><span class="kd">const</span><span class="w"> </span><span class="nx">QGIs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">results</span><span class="p">.</span><span class="nx">QGIs</span><span class="p">;</span>
+</span><span id="__span-0-12">
+</span><span id="__span-0-13"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">));</span>
+</span><span id="__span-0-14">
+</span><span id="__span-0-15"><span class="c1">// Get QGI answer count report - getQgiAnswerCounts(QGIs, &quot;Y&quot;) to export a csv file</span>
+</span><span id="__span-0-16"><span class="kd">const</span><span class="w"> </span><span class="nx">qgiResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getQgiAnswerCounts</span><span class="p">(</span><span class="nx">QGIs</span><span class="p">);</span>
+</span><span id="__span-0-17">
+</span><span id="__span-0-18"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">qgiResults</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">));</span>
+</span></code></pre></div>
+<h3 id="getanswercounts-results">getAnswerCounts results</h3>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-1-1"><span class="p">{</span>
+</span><span id="__span-1-2"><span class="w">  </span><span class="nx">csvData</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-3"><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-4"><span class="w">      </span><span class="nx">questionCode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PBCH&#39;</span><span class="p">,</span>
+</span><span id="__span-1-5"><span class="w">      </span><span class="nx">np_primary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+</span><span id="__span-1-6"><span class="w">      </span><span class="nx">np_secondary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-1-7"><span class="w">      </span><span class="nx">np_QGIs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s1">&#39;C2959-I3&#39;</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-1-8"><span class="w">      </span><span class="nx">prod_primary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-1-9"><span class="w">      </span><span class="nx">prod_secondary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-1-10"><span class="w">      </span><span class="nx">prod_QGIs</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+</span><span id="__span-1-11"><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-12"><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-13"><span class="w">      </span><span class="nx">questionCode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;DRYINDT&#39;</span><span class="p">,</span>
+</span><span id="__span-1-14"><span class="w">      </span><span class="nx">np_primary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-1-15"><span class="w">      </span><span class="nx">np_secondary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-1-16"><span class="w">      </span><span class="nx">np_QGIs</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+</span><span id="__span-1-17"><span class="w">      </span><span class="nx">prod_primary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+</span><span id="__span-1-18"><span class="w">      </span><span class="nx">prod_secondary_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-1-19"><span class="w">      </span><span class="nx">prod_QGIs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s1">&#39;C3595-I1&#39;</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-1-20"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-21"><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-1-22"><span class="w">  </span><span class="nx">QGIs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s1">&#39;C2959-I3&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s1">&#39;C3595-I1&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-1-23"><span class="p">}</span>
+</span></code></pre></div>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/Question_Answer_Counts.csv">Example CSV output</a></p>
+<h3 id="getqgianswercounts-results">getQgiAnswerCounts results</h3>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><span class="p">[</span>
+</span><span id="__span-2-2"><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-2-3"><span class="w">    </span><span class="nx">QGI</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;C2959-I3&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><span class="w">    </span><span class="nx">is_deactivated</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><span class="w">    </span><span class="nx">primary_question</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;PBCH&quot;</span><span class="p">,</span>
+</span><span id="__span-2-6"><span class="w">    </span><span class="nx">taxa</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Broccoli&quot;</span><span class="p">,</span>
+</span><span id="__span-2-7"><span class="w">    </span><span class="nx">np_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+</span><span id="__span-2-8"><span class="w">    </span><span class="nx">np_answer_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-03-16T04:29:09.119Z&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><span class="w">    </span><span class="nx">np_update_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-03-16T10:41:46.372Z&quot;</span><span class="p">,</span>
+</span><span id="__span-2-10"><span class="w">    </span><span class="nx">prod_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-2-11"><span class="w">    </span><span class="nx">prod_answer_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-2-12"><span class="w">    </span><span class="nx">prod_update_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-2-13"><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-2-14"><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-2-15"><span class="w">    </span><span class="nx">QGI</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;C3595-I1&quot;</span><span class="p">,</span>
+</span><span id="__span-2-16"><span class="w">    </span><span class="nx">is_deactivated</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span id="__span-2-17"><span class="w">    </span><span class="nx">primary_question</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DRYINDT&quot;</span><span class="p">,</span>
+</span><span id="__span-2-18"><span class="w">    </span><span class="nx">taxa</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Corn&quot;</span><span class="p">,</span>
+</span><span id="__span-2-19"><span class="w">    </span><span class="nx">np_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-2-20"><span class="w">    </span><span class="nx">np_answer_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-2-21"><span class="w">    </span><span class="nx">np_update_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-2-22"><span class="w">    </span><span class="nx">prod_answer_count</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+</span><span id="__span-2-23"><span class="w">    </span><span class="nx">prod_answer_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-03-22T19:08:17.357Z&quot;</span><span class="p">,</span>
+</span><span id="__span-2-24"><span class="w">    </span><span class="nx">prod_update_time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-03-22T20:05:01.180Z&quot;</span><span class="p">,</span>
+</span><span id="__span-2-25"><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-2-26"><span class="p">];</span>
+</span></code></pre></div>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/QGI_Answer_Counts.csv">Example CSV output</a></p>
 
 
 
