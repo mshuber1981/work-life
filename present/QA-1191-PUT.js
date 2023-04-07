@@ -1,14 +1,14 @@
 import fs from "fs";
 import path from "path";
 import axios from "axios";
-import { getAuthToken } from "../functions/Auth.js";
-import { CSVToArray } from "../functions/CSV.js";
+import { getAuthToken } from "./functions/Auth.js";
+import { CSVToArray } from "./functions/CSV.js";
 
 // Get token
 const authToken = await getAuthToken("NP");
 // Read CSV file
 const csvData = fs.readFileSync(
-  path.resolve("Stories", "QA-1191.csv"),
+  path.resolve("present", "QA-1191.csv"),
   "utf-8"
 );
 // Covert to Array

@@ -1,6 +1,6 @@
 import fs from "fs";
 import axios from "axios";
-import { getAuthToken } from "../functions/Auth.js";
+import { getAuthToken } from "./functions/Auth.js";
 
 // Get token
 const authToken = await getAuthToken("NP");
