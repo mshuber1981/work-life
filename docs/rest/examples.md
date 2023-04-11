@@ -6,7 +6,7 @@ Problem - Read from a csv file of Question codes, get the short text and audit h
 
 Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
 
-1. [QuestionCreationHistory.js line](GitHub) - Use a GET endpoint to grab the audit history for each Question Code.
+1. [QuestionCreationHistory.js line 50](https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L50) - Use a GET endpoint to grab the audit history for each Question Code.
 
    ```javascript linenums="1"
    const result = await axios.post(
@@ -29,7 +29,7 @@ Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
    tempData.History = JSON.stringify(tempHistory);
    ```
 
-2. [QuestionCreationHistory.js line](GitHub) - Use a GET endpoint to fetch the short text for each Question code.
+2. [QuestionCreationHistory.js line 79](https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L79) - Use a GET endpoint to fetch the short text for each Question code.
 
    ```javascript linenums="1"
    const shortText = await axios.get(
