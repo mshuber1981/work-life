@@ -444,42 +444,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#name" class="md-nav__link">
-    Name
+  <a href="#question-creation-history-report" class="md-nav__link">
+    Question Creation History Report
   </a>
-  
-    <nav class="md-nav" aria-label="Name">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    Example usage
-  </a>
-  
-    <nav class="md-nav" aria-label="Example usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#some-file" class="md-nav__link">
-    Some file
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#results" class="md-nav__link">
-    Results
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -588,42 +555,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#name" class="md-nav__link">
-    Name
+  <a href="#question-creation-history-report" class="md-nav__link">
+    Question Creation History Report
   </a>
-  
-    <nav class="md-nav" aria-label="Name">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    Example usage
-  </a>
-  
-    <nav class="md-nav" aria-label="Example usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#some-file" class="md-nav__link">
-    Some file
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#results" class="md-nav__link">
-    Results
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -646,20 +580,68 @@
 
 
 <h1 id="examples">Examples</h1>
-<h2 id="name">Name</h2>
-<p>Problem - ?</p>
+<h2 id="question-creation-history-report">Question Creation History Report</h2>
+<p>Problem - Read from a csv file of Question codes, get the short text and audit history creation date(s) for each code, and then output to a csv file.</p>
 <p>Solution (<a href="https://nodejs.org/en">Node.js</a> + <a href="https://axios-http.com/">Axios</a>):</p>
 <ol>
-<li><a href="github">Some file some line</a> - Use some endpoint to do something</li>
+<li><a href="https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L50">QuestionCreationHistory.js line 50</a> - Use a GET endpoint to grab the audit history for each Question Code.</li>
 </ol>
-<h3 id="example-usage">Example usage</h3>
-<h4 id="some-file"><a href="github">Some file</a></h4>
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1">
-</span></code></pre></div>
-<h4 id="results">Results</h4>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1">
-</span></code></pre></div>
-<p><a href="github link">Example output files</a></p>
+<div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+</span><span id="__span-0-2"><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">QUESTIONS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`audit`</span><span class="p">,</span>
+</span><span id="__span-0-3"><span class="w">  </span><span class="nx">requestBody</span><span class="p">,</span>
+</span><span id="__span-0-4"><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-0-5"><span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">authToken</span><span class="p">.</span><span class="nx">access_token</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-6"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-7"><span class="p">);</span>
+</span><span id="__span-0-8">
+</span><span id="__span-0-9"><span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-10"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;CREATED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><span class="w">    </span><span class="nx">tempHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="sb">`Created: </span><span class="si">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">timestamp</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-0-12"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-13"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;DELETED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-14"><span class="w">      </span><span class="nx">tempHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="sb">`Deleted: </span><span class="si">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">timestamp</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-0-15"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-16"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-17"><span class="p">});</span>
+</span><span id="__span-0-18"><span class="nx">tempData</span><span class="p">.</span><span class="nx">History</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">tempHistory</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li><a href="https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L79">QuestionCreationHistory.js line 79</a> - Use a GET endpoint to fetch the short text for each Question code.</li>
+</ol>
+<div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="kd">const</span><span class="w"> </span><span class="nx">shortText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+</span><span id="__span-1-2"><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">QUESTIONS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`question?questionCode=</span><span class="si">${</span><span class="nx">element</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+</span><span id="__span-1-3"><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-1-4"><span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">authToken</span><span class="p">.</span><span class="nx">access_token</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-5"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-6"><span class="p">);</span>
+</span><span id="__span-1-7">
+</span><span id="__span-1-8"><span class="nx">tempData</span><span class="p">.</span><span class="nx">Short_Text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">shortText</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">questions</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">text</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/Question_Creation_History.csv">Example CSV output</a></p>
 <!-- ## Name
 
 Problem - ?
@@ -672,13 +654,13 @@ Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
 
 #### [Some file](github)
 
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1">
-</span></code></pre></div>
+<div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">
+</span></code></pre></div></td></tr></table></div>
 
 #### Results
 
-<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1">
-</span></code></pre></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">
+</span></code></pre></div></td></tr></table></div>
 
 [Example output files](github link) -->
 
@@ -694,13 +676,13 @@ Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
 
 #### [Some file](github)
 
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1">
-</span></code></pre></div>
+<div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">
+</span></code></pre></div></td></tr></table></div>
 
 #### Results
 
-<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1">
-</span></code></pre></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">
+</span></code></pre></div></td></tr></table></div>
 
 [Example output files](github link) -->
 
