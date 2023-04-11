@@ -108,3 +108,6 @@ dist
 
 # MkDocs site directory
 site/
+
+# test directory
+test/
