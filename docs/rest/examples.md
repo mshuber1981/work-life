@@ -1,28 +1,48 @@
 # Examples
 
-## Name
+## Question Creation History Report
 
-Problem - ?
+Problem - Read from a csv file of Question codes, get the short text and audit history creation date(s) for each code, and then output to a csv file.
 
 Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
 
-1. [Some file some line](github) - Use some endpoint to do something
+1. [QuestionCreationHistory.js line](GitHub) - Use a GET endpoint to grab the audit history for each Question Code.
 
-### Example usage
+   ```javascript linenums="1"
+   const result = await axios.post(
+     process.env.QUESTIONS + `audit`,
+     requestBody,
+     {
+       headers: { Authorization: `Bearer ${authToken.access_token}` },
+     }
+   );
 
-#### [Some file](github)
+   result.data.forEach((element) => {
+     if (element.action === "CREATED") {
+       tempHistory.push(`Created: ${element.timestamp}`);
+     } else {
+       if (element.action === "DELETED") {
+         tempHistory.push(`Deleted: ${element.timestamp}`);
+       }
+     }
+   });
+   tempData.History = JSON.stringify(tempHistory);
+   ```
 
-```javascript
+2. [QuestionCreationHistory.js line](GitHub) - Use a GET endpoint to fetch the short text for each Question code.
 
-```
+   ```javascript linenums="1"
+   const shortText = await axios.get(
+     process.env.QUESTIONS + `question?questionCode=${element[0]}`,
+     {
+       headers: { Authorization: `Bearer ${authToken.access_token}` },
+     }
+   );
 
-#### Results
+   tempData.Short_Text = shortText.data.questions[0].text;
+   ```
 
-```json
-
-```
-
-[Example output files](github link)
+[Example CSV output](https://github.com/mshuber1981/work-life/blob/main/present/Question_Creation_History.csv)
 
 <!-- ## Name
 
@@ -36,13 +56,13 @@ Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
 
 #### [Some file](github)
 
-```javascript
+```javascript linenums="1"
 
 ```
 
 #### Results
 
-```json
+```json linenums="1"
 
 ```
 
@@ -60,13 +80,13 @@ Solution ([Node.js](https://nodejs.org/en) + [Axios](https://axios-http.com/)):
 
 #### [Some file](github)
 
-```javascript
+```javascript linenums="1"
 
 ```
 
 #### Results
 
-```json
+```json linenums="1"
 
 ```
 
