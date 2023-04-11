@@ -18,6 +18,8 @@ const questionCodesCsvData = fs.readFileSync(
 // Covert to Array
 const questionCodes = CSVToArray(questionCodesCsvData);
 
+// console.log(questionCodes);
+
 if (questionCodes.length !== 0) {
   const csvOutData = [];
 
