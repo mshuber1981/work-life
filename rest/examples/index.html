@@ -448,6 +448,33 @@
     Question Creation History Report
   </a>
   
+    <nav class="md-nav" aria-label="Question Creation History Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-audit-history-example" class="md-nav__link">
+    Get audit history example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-short-text-example" class="md-nav__link">
+    Get short text example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-csv-output" class="md-nav__link">
+    Example CSV output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -559,6 +586,33 @@
     Question Creation History Report
   </a>
   
+    <nav class="md-nav" aria-label="Question Creation History Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-audit-history-example" class="md-nav__link">
+    Get audit history example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-short-text-example" class="md-nav__link">
+    Get short text example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-csv-output" class="md-nav__link">
+    Example CSV output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -584,8 +638,14 @@
 <p>Problem - Read from a csv file of Question codes, get the short text and audit history creation date(s) for each code, and then output to a csv file.</p>
 <p>Solution (<a href="https://nodejs.org/en">Node.js</a> + <a href="https://axios-http.com/">Axios</a>):</p>
 <ol>
-<li><a href="https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L50">QuestionCreationHistory.js line 50</a> - Use a GET endpoint to grab the audit history for each Question Code.</li>
+<li>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L50">QuestionCreationHistory.js line 50</a> - Use a GET endpoint to grab the audit history for each Question Code.</p>
+</li>
+<li>
+<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L79">QuestionCreationHistory.js line 79</a> - Use a GET endpoint to fetch the short text for each Question code.</p>
+</li>
 </ol>
+<h3 id="get-audit-history-example">Get audit history example</h3>
 <div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -599,32 +659,22 @@
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
-</span><span id="__span-0-2"><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">QUESTIONS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`audit`</span><span class="p">,</span>
-</span><span id="__span-0-3"><span class="w">  </span><span class="nx">requestBody</span><span class="p">,</span>
-</span><span id="__span-0-4"><span class="w">  </span><span class="p">{</span>
-</span><span id="__span-0-5"><span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">authToken</span><span class="p">.</span><span class="nx">access_token</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-0-6"><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-0-7"><span class="p">);</span>
-</span><span id="__span-0-8">
-</span><span id="__span-0-9"><span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-10"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;CREATED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-11"><span class="w">    </span><span class="nx">tempHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="sb">`Created: </span><span class="si">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">timestamp</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span><span id="__span-0-12"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-13"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;DELETED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-14"><span class="w">      </span><span class="nx">tempHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="sb">`Deleted: </span><span class="si">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">timestamp</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span><span id="__span-0-15"><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-16"><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-0-17"><span class="p">});</span>
-</span><span id="__span-0-18"><span class="nx">tempData</span><span class="p">.</span><span class="nx">History</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">tempHistory</span><span class="p">);</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">QUESTIONS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`audit`</span><span class="p">,</span><span class="w"> </span><span class="nx">requestBody</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Authorization</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">authToken</span><span class="p">.</span><span class="nx">access_token</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-3"><span class="p">});</span>
+</span><span id="__span-0-4">
+</span><span id="__span-0-5"><span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;CREATED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><span class="w">    </span><span class="nx">tempHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="sb">`Created: </span><span class="si">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">timestamp</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-0-8"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-9"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;DELETED&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-10"><span class="w">      </span><span class="nx">tempHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="sb">`Deleted: </span><span class="si">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">timestamp</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-0-11"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-12"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-13"><span class="p">});</span>
+</span><span id="__span-0-14"><span class="nx">tempData</span><span class="p">.</span><span class="nx">History</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">tempHistory</span><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
-<ol>
-<li><a href="https://github.com/mshuber1981/work-life/blob/main/present/QuestionCreationHistory.js#L79">QuestionCreationHistory.js line 79</a> - Use a GET endpoint to fetch the short text for each Question code.</li>
-</ol>
+<h3 id="get-short-text-example">Get short text example</h3>
 <div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -641,7 +691,7 @@
 </span><span id="__span-1-7">
 </span><span id="__span-1-8"><span class="nx">tempData</span><span class="p">.</span><span class="nx">Short_Text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">shortText</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">questions</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">text</span><span class="p">;</span>
 </span></code></pre></div></td></tr></table></div>
-<p><a href="https://github.com/mshuber1981/work-life/blob/main/present/Question_Creation_History.csv">Example CSV output</a></p>
+<h3 id="example-csv-output"><a href="https://github.com/mshuber1981/work-life/blob/main/present/Question_Creation_History.csv">Example CSV output</a></h3>
 <!-- ## Name
 
 Problem - ?
