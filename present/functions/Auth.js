@@ -24,7 +24,7 @@ try {
   prodVault = JSON.parse(prodData);
   oauthEndpoint = JSON.parse(oauthData);
 } catch (error) {
-  console.error(error.message);
+  throw new Error(error.message);
 }
 
 // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
