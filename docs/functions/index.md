@@ -1,4 +1,4 @@
-# Getting Started
+# Functions - Getting Started
 
 > Don't reinvent the wheel, just realign it.
 
