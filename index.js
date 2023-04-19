@@ -5,8 +5,6 @@ import { getQuestionUomValues } from "./present/functions/Questions.js";
 
 // Set CSV file name
 const csvFileName = "test";
-// Get token
-const authToken = await getAuthToken("NP");
 let csvArray;
 
 try {
@@ -21,6 +19,9 @@ try {
 } catch (error) {
   console.log(`${error.message} (check csvFilename - line 6)`);
 }
+
+// Get token
+const authToken = await getAuthToken("NP");
 
 // Get a list of valid answers for each Question and UOM combination
 for (let index = 0; index < csvArray.length; index++) {
