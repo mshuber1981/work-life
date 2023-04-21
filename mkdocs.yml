@@ -53,13 +53,13 @@ nav:
   - Home: index.md
   - Recent Projects: recent.md
   - Functions:
-      - Getting Started: functions/index.md
+      - Functions - Getting Started: functions/index.md
       - Oauth2 Tokens: functions/auth.md
       - CSV Files: functions/csv.md
       - General Stuff: functions/general.md
   - REST APIs:
-      - Getting Started: rest/index.md
+      - REST APIS - Getting Started: rest/index.md
       - Examples: rest/examples.md
   - BigQuery:
-      - Getting Started: bigquery/index.md
+      - BigQuery - Getting Started: bigquery/index.md
       - Examples: bigquery/examples.md
