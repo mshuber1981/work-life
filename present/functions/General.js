@@ -7,7 +7,7 @@ export function isRequired(param) {
 }
 
 // Run a terminal command and then wait for/return the output
-export function execPromise(command) {
+export function execPromise(command = isRequired("Terminal Command (string)")) {
   return new Promise(function (resolve, reject) {
     exec(command, (error, stdout, stderr) => {
       if (error) {
