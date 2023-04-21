@@ -9,13 +9,38 @@ One way to deal with required function parameters in JavaScript - [CSS-tricks.co
 ### Example isRequired usage
 
 ```javascript linenums="1"
+const logName = (name = isRequired("Name")) => console.log(name);
 
+logName();
 ```
 
 ### Example isRequired output
 
-```javascript linenums="1"
+```bash
+file:///home/mike/GitHub/personal/work-life/present/functions/General.js:6
+  throw new Error(`${param} is required!`);
+        ^
 
+Error: Name is required!
 ```
 
 ## Terminal commands with Node.js
+
+I needed a way to run a terminal command in Node and wait for the results. This lead me to Node's [Child process](https://nodejs.org/dist/latest-v18.x/docs/api/child_process.html).
+
+[execPromise (General.js line 9)](https://github.com/mshuber1981/work-life/blob/main/present/functions/General.js#L9)
+
+### Example execPromise usage
+
+```javascript linenums="1"
+const whoAmI = (command) =>
+  execPromise(command).then((response) => console.log(response));
+
+whoAmI("whoami");
+```
+
+### Example execPromise output
+
+```bash
+mike
+```
