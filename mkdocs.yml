@@ -51,6 +51,7 @@ extra:
 
 nav:
   - Home: index.md
+  - My Local Dev Environment: devEnv.md
   - Recent Projects: recent.md
   - Functions:
       - Functions - Getting Started: functions/index.md
