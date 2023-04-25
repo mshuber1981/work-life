@@ -26,7 +26,7 @@ Error: Name is required!
 
 ## Terminal commands with Node.js
 
-I needed a way to run a terminal command in Node and wait for the results. This lead me to Node's [Child process](https://nodejs.org/dist/latest-v18.x/docs/api/child_process.html).
+I needed a way to run a terminal command in Node and wait for the results. This leads me to Node's [Child process](https://nodejs.org/dist/latest-v18.x/docs/api/child_process.html).
 
 [execPromise (General.js line 9)](https://github.com/mshuber1981/work-life/blob/main/present/functions/General.js#L9)
 

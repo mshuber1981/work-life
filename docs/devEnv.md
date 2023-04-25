@@ -1,6 +1,6 @@
 # My Local Development Environment
 
-I have been using and supporting Windows for over a decade, so it is the operating system I am most comfortable with. I have used a Mac in the past, and most of the Developers I have interacted with over the years seem to prefere it. In my current role I have to use Windows, but all of the Developers use a Mac. The Mac operating system is Unix based, so having acceess to a Linux based terminal is a great substitute. Windows Subsystem for Linux (WSL) is currently my preferred development environment.
+I have been using and supporting Windows for over a decade, so it is the operating system I am most comfortable with. I have used a Mac in the past, and most of the Developers I have interacted with over the years seem to prefer it. In my current role, I have to use Windows, but all of the Developers use a Mac. The Mac operating system is Unix-based, so having access to a Linux-based terminal is a great substitute. Windows Subsystem for Linux (WSL) is currently my preferred development environment.
 
 ## WSL, VS Code, and Git
 
