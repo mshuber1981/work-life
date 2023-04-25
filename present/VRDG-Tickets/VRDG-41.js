@@ -34,7 +34,7 @@ console.log(`Evaluating ${count} records...`);
 for (let index = 0; index < csvArray.length; index++) {
   const element = csvArray[index];
 
-  //   If yes, turn repetitions on
+  // If yes, turn repetitions on
   if (element[2].toUpperCase() === "YES") {
     // Get all of the current preferences
     const prefs = await axios
