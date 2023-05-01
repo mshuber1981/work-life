@@ -10,11 +10,14 @@ const env = "NP";
 // Declare url variables
 let qgiPrefsUrl, qgiPatchUrl;
 if (env.toUpperCase() === "NP") {
-  qgiPrefsUrl = process.env.QGI_PREFS;
-  qgiPatchUrl = process.env.QGI_META_PATCH;
+  qgiPrefsUrl =
+    process.env.QUESTION_GROUPS + "questionGroupInstance?instanceSeq=";
+  qgiPatchUrl = process.env.QUESTION_GROUPS + "questionGroupInstance/metadata";
 } else if (env.toUpperCase() === "PROD") {
-  qgiPrefsUrl = process.env.PROD_QGI_PREFS;
-  qgiPatchUrl = process.env.PROD_QGI_META_PATCH;
+  qgiPrefsUrl =
+    process.env.PROD_QUESTION_GROUPS + "questionGroupInstance?instanceSeq=";
+  qgiPatchUrl =
+    process.env.PROD_QUESTION_GROUPS + "questionGroupInstance/metadata";
 } else {
   throw new Error(`${env} is not a valid argument, please use "NP" or "PROD".`);
 }
@@ -22,7 +25,7 @@ if (env.toUpperCase() === "NP") {
 const authToken = await getAuthToken(env);
 // Read CSV file
 const csvData = fs.readFileSync(
-  path.resolve("VRDG-Tickets", "VRDG-41.csv"),
+  path.resolve("present/VRDG-Tickets", "VRDG-41.csv"),
   "utf-8"
 );
 // Covert to Array
@@ -68,7 +71,7 @@ for (let index = 0; index < csvArray.length; index++) {
       prefs[element[1]].repetitionNotAllowed = false;
       const allowReps = [
         {
-          userId: "EHXFR",
+          userId: process.env.USER_ID,
           instances: [{}],
         },
       ];
@@ -131,7 +134,7 @@ for (let index = 0; index < csvArray.length; index++) {
       prefs[element[1]].subsamplesAllowed = false;
       const disableSub = [
         {
-          userId: "EHXFR",
+          userId: process.env.USER_ID,
           instances: [{}],
         },
       ];
