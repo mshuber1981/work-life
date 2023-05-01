@@ -6,7 +6,7 @@ BigQuery is a fully managed enterprise data warehouse that helps you manage and 
 
 This has been a great learning resource for me.
 
-## Google BigQuery: Node.js Client - [https://cloud.google.com/nodejs/docs/reference/bigquery/latest](https://cloud.google.com/nodejs/docs/reference/bigquery/latest)
+## Google BigQuery: Node.js Client - [https://cloud.google.com/nodejs/docs/reference/bigquery/](https://cloud.google.com/nodejs/docs/reference/bigquery/latest)
 
 The BigQuery Node client lets me create query jobs, wait for the results, and solve interesting problems with JavaScript.
 
