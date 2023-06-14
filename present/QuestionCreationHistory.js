@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import axios from "axios";
-import { getAuthToken } from "./functions/Auth.js";
-import { CSVToArray } from "./functions/CSV.js";
+import getAuthToken from "./functions/Auth.js";
+import CSVToArray from "./functions/CSV.js";
 import cliProgress from "cli-progress";
 import { convertToCsv } from "./functions/CSV.js";
 

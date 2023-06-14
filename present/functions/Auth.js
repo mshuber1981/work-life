@@ -5,7 +5,8 @@ dotenv.config();
 import axios from "axios";
 // https://github.com/compwright/axios-oauth-client
 import oauth from "axios-oauth-client";
-import { execPromise, isRequired } from "./General.js";
+import isRequired from "./General.js";
+import { execPromise } from "./General.js";
 
 let npVault, prodVault, oauthEndpoint;
 
@@ -42,7 +43,9 @@ const getProdAuth = oauth.clientCredentials(
   prodVault.data.secret
 );
 
-export async function getAuthToken(env = isRequired("env (NP or PROD)")) {
+export default async function getAuthToken(
+  env = isRequired("env (NP or PROD)")
+) {
   try {
     if (env.toUpperCase() === "NP") {
       const auth = await getAuth(`${npVault.data.client_id}/.default`);

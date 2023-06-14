@@ -1,7 +1,7 @@
 import path from "path";
 // https://www.npmjs.com/package/objects-to-csv
 import ObjectsToCsv from "objects-to-csv";
-import { isRequired } from "./General.js";
+import isRequired from "./General.js";
 
 // Covert objects to CSV file
 export async function convertToCsv(
@@ -16,7 +16,7 @@ export async function convertToCsv(
 }
 
 // Covert CSV data to an array
-export function CSVToArray(
+export default function CSVToArray(
   data = isRequired("CSV data"),
   delimiter = ",",
   omitFirstRow = true

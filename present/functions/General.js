@@ -2,7 +2,7 @@
 import { exec } from "child_process";
 
 // Require a parameter
-export function isRequired(param) {
+export default function isRequired(param) {
   throw new Error(`${param} is required!`);
 }
 

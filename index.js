@@ -1,7 +1,7 @@
 import fs from "fs";
-import { getAuthToken } from "./present/functions/Auth.js";
-import { CSVToArray } from "./present/functions/CSV.js";
-import { getQuestionUomValues } from "./present/functions/Questions.js";
+import getAuthToken from "./present/functions/Auth.js";
+import CSVToArray from "./present/functions/CSV.js";
+import getQuestionUomValues from "./present/functions/Questions.js";
 
 // Set CSV file name
 const csvFileName = "test";

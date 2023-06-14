@@ -1,41 +1,21 @@
-import axios from "axios";
-import { getAuthToken } from "../functions/Auth.js";
-import { getQuestionUomValues } from "../functions/Questions.js";
+import getAuthToken from "../functions/Auth.js";
+import getQuestionUomValues from "../functions/Questions.js";
+import getTaxaInfo from "../functions/Taxa.js";
 import { convertToCsv } from "../functions/CSV.js";
 
-async function getTaxaInfo(authToken, taxaAnswers) {
-  const data = [];
-  // Check Taxa api for EPPO Scientific name, otherwise check for provided name
-  for (let index = 0; index < taxaAnswers.length; index++) {
-    data.push(
-      axios
-        .get(process.env.TAXA_ENDPOINT + taxaAnswers[index].value, {
-          headers: { Authorization: `Bearer ${authToken.access_token}` },
-        })
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          return error.toJSON();
-        })
-    );
-  }
-
-  return Promise.all(data);
-}
-
-/* Set Question and UOM codes */
-const qCode = "RESTRICTED";
-const uom = "TEXT";
+/* Set Question Code, Unit Of Measure, and Environment */
+const qCode = "Some code";
+const uom = "Some unit of measure";
+const env = "NP or PROD";
 
 // Get token
-const authToken = await getAuthToken("NP");
+const authToken = await getAuthToken(env);
 // CSV Data
 const csvData = [];
 // Get answers
-const answers = await getQuestionUomValues(authToken, "NP", qCode, uom);
+const answers = await getQuestionUomValues(authToken, env, qCode, uom);
 // console.log(answers);
-const taxaInfo = await getTaxaInfo(authToken, answers);
+const taxaInfo = await getTaxaInfo(authToken, env, answers);
 
 answers.forEach((element, index) => {
   const tempData = {
@@ -59,4 +39,4 @@ answers.forEach((element, index) => {
 
 // console.log(csvData);
 
-convertToCsv(csvData, "./", qCode);
+convertToCsv(csvData, "./", `${env}_${qCode}_${uom}`);

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { isRequired } from "./General.js";
+import isRequired from "./General.js";
 
 // Get a list of valid answers for a Question code and UOM
-export async function getQuestionUomValues(
+export default async function getQuestionUomValues(
   authToken = isRequired("authToken"),
   env = isRequired("env (NP or PROD)"),
   qCode = isRequired("Question Code"),
