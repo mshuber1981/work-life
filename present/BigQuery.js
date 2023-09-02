@@ -1,31 +1,31 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
-import axios from 'axios';
+import axios from "axios";
 // https://github.com/npkgz/cli-progress
-import cliProgress from 'cli-progress';
-import isRequired from './functions/General.js';
-import getAuthToken from './functions/Auth.js';
-import { convertToCsv } from './functions/CSV.js';
+import cliProgress from "cli-progress";
+import isRequired from "./functions/General.js";
+import getAuthToken from "./functions/Auth.js";
+import { convertToCsv } from "./functions/CSV.js";
 // https://cloud.google.com/nodejs/docs/reference/bigquery/latest
-import { BigQuery } from '@google-cloud/bigquery';
+import { BigQuery } from "@google-cloud/bigquery";
 
 const bigquery = new BigQuery();
 
 // Get the primary and secondary answer counts from Field Answers NP and Prod for each Question code, and a list of all the related QGIs.
 export async function getFieldAnswerCounts(
-  arr = isRequired('Array of Question codes'),
-  exp = 'NO'
+  arr = isRequired("Array of Question codes"),
+  exp = "NO"
 ) {
   const returnData = { csvData: [], QGIs: [] };
   const csvOutData = [];
   const getQGIs = [];
 
   if (arr.length !== 0) {
-    console.log('');
+    console.log("");
     console.log(
       `Searching for ${arr.length} Question codes(s) in Field Answers...`
     );
-    console.log('');
+    console.log("");
 
     const answerCounts = new cliProgress.SingleBar(
       {},
@@ -39,11 +39,11 @@ export async function getFieldAnswerCounts(
       const csvOutDataObj = {
         questionCode: element[0],
         uom: element[1],
-        np_primary_answer_count: '',
-        np_secondary_answer_count: '',
+        np_primary_answer_count: "",
+        np_secondary_answer_count: "",
         np_QGIs: [],
-        prod_primary_answer_count: '',
-        prod_secondary_answer_count: '',
+        prod_primary_answer_count: "",
+        prod_secondary_answer_count: "",
         prod_QGIs: [],
       };
       // NP query for primary and secondary answer counts
@@ -145,47 +145,47 @@ export async function getFieldAnswerCounts(
 
     answerCounts.stop();
 
-    if (exp.toUpperCase() === 'YES' || exp.toUpperCase() === 'Y') {
+    if (exp.toUpperCase() === "YES" || exp.toUpperCase() === "Y") {
       // Export to CSV file
-      await convertToCsv(csvOutData, './', 'Field_Question_Answer_Counts');
+      await convertToCsv(csvOutData, "./", "Field_Question_Answer_Counts");
 
-      console.log('');
+      console.log("");
       console.log(
         `Exported ${csvOutData.length} record(s) to Field_Question_Answer_Counts.csv`
       );
-      console.log('');
+      console.log("");
     }
 
-    console.log('');
+    console.log("");
     console.log(`Returning data for ${csvOutData.length} record(s).`);
-    console.log('');
+    console.log("");
     getQGIs.forEach((element) => {
       returnData.QGIs.push([element]);
     });
     returnData.csvData = [...csvOutData];
     return returnData;
   } else {
-    console.log('');
-    console.log('No Questions found... ¯\\_(ツ)_/¯');
-    console.log('');
+    console.log("");
+    console.log("No Questions found... ¯\\_(ツ)_/¯");
+    console.log("");
   }
 }
 
 // Get the primary and secondary answer counts from Compliance Answers NP and Prod for each Question code, and a list of all the related QGIs.
 export async function getComplianceAnswerCounts(
-  arr = isRequired('Array of Question codes'),
-  exp = 'NO'
+  arr = isRequired("Array of Question codes"),
+  exp = "NO"
 ) {
   const returnData = { csvData: [], QGIs: [] };
   const csvOutData = [];
   const getQGIs = [];
 
   if (arr.length !== 0) {
-    console.log('');
+    console.log("");
     console.log(
       `Searching for ${arr.length} Question codes(s) in Compliance Answers...`
     );
-    console.log('');
+    console.log("");
 
     const answerCounts = new cliProgress.SingleBar(
       {},
@@ -199,11 +199,11 @@ export async function getComplianceAnswerCounts(
       const csvOutDataObj = {
         questionCode: element[0],
         uom: element[1],
-        np_primary_answer_count: '',
-        np_secondary_answer_count: '',
+        np_primary_answer_count: "",
+        np_secondary_answer_count: "",
         np_QGIs: [],
-        prod_primary_answer_count: '',
-        prod_secondary_answer_count: '',
+        prod_primary_answer_count: "",
+        prod_secondary_answer_count: "",
         prod_QGIs: [],
       };
       // NP query for primary and secondary answer counts
@@ -305,43 +305,43 @@ export async function getComplianceAnswerCounts(
 
     answerCounts.stop();
 
-    if (exp.toUpperCase() === 'YES' || exp.toUpperCase() === 'Y') {
+    if (exp.toUpperCase() === "YES" || exp.toUpperCase() === "Y") {
       // Export to CSV file
-      await convertToCsv(csvOutData, './', 'Compliance_Question_Answer_Counts');
+      await convertToCsv(csvOutData, "./", "Compliance_Question_Answer_Counts");
 
-      console.log('');
+      console.log("");
       console.log(
         `Exported ${csvOutData.length} record(s) to Compliance_Question_Answer_Counts.csv`
       );
-      console.log('');
+      console.log("");
     }
 
-    console.log('');
+    console.log("");
     console.log(`Returning data for ${csvOutData.length} record(s).`);
-    console.log('');
+    console.log("");
     getQGIs.forEach((element) => {
       returnData.QGIs.push([element]);
     });
     returnData.csvData = [...csvOutData];
     return returnData;
   } else {
-    console.log('');
-    console.log('No Questions found... ¯\\_(ツ)_/¯');
-    console.log('');
+    console.log("");
+    console.log("No Questions found... ¯\\_(ツ)_/¯");
+    console.log("");
   }
 }
 
 // Get answer counts and other useful metadata from Field Answers NP and Prod for each QGI.
 export async function getFieldQgiAnswerCounts(
-  arr = isRequired('Array of QGIs'),
-  exp = 'NO'
+  arr = isRequired("Array of QGIs"),
+  exp = "NO"
 ) {
   const qgiCsvOutData = [];
 
   if (arr.length !== 0) {
-    console.log('');
+    console.log("");
     console.log(`Searching for ${arr.length} QGI(s) in Field Answers...`);
-    console.log('');
+    console.log("");
 
     const qgiAnswerCounts = new cliProgress.SingleBar(
       {},
@@ -354,15 +354,15 @@ export async function getFieldQgiAnswerCounts(
       const element = arr[index];
       const csvOutDataObj = {
         QGI: element[0],
-        is_deactivated: '',
-        primary_question: '',
-        taxa: '',
-        np_answer_count: '',
-        np_answer_time: '',
-        np_update_time: '',
-        prod_answer_count: '',
-        prod_answer_time: '',
-        prod_update_time: '',
+        is_deactivated: "",
+        primary_question: "",
+        taxa: "",
+        np_answer_count: "",
+        np_answer_time: "",
+        np_update_time: "",
+        prod_answer_count: "",
+        prod_answer_time: "",
+        prod_update_time: "",
       };
       // NP query for answer count
       const npCountQuery = `select count(*) as np_answer_count from ${process.env.CSW_FIELD_ANSWERS} where instance_seq="${element[0]}";`;
@@ -379,7 +379,7 @@ export async function getFieldQgiAnswerCounts(
         const [prodJob] = await bigquery.createQueryJob(prodCountQuery);
         const [prodResult] = await prodJob.getQueryResults();
         // Get NP token
-        const authToken = await getAuthToken('NP');
+        const authToken = await getAuthToken("NP");
 
         // Check to see if the QGI is deactivated
         await axios
@@ -392,9 +392,9 @@ export async function getFieldQgiAnswerCounts(
           )
           .then((response) => {
             if (response.data) {
-              csvOutDataObj.is_deactivated = 'false';
+              csvOutDataObj.is_deactivated = "false";
             } else {
-              csvOutDataObj.is_deactivated = 'true';
+              csvOutDataObj.is_deactivated = "true";
             }
           });
 
@@ -410,7 +410,7 @@ export async function getFieldQgiAnswerCounts(
           csvOutDataObj.np_answer_time = npResult2[0].answer_time.value;
           csvOutDataObj.np_update_time = npResult2[0].modified_time.value;
           secondaryAnswers.forEach((element) => {
-            if (element.question_code === 'TAXA') {
+            if (element.question_code === "TAXA") {
               csvOutDataObj.taxa = element.value;
             }
           });
@@ -425,7 +425,7 @@ export async function getFieldQgiAnswerCounts(
           csvOutDataObj.prod_answer_time = prodResult2[0].answer_time.value;
           csvOutDataObj.prod_update_time = prodResult2[0].modified_time.value;
           secondaryAnswers.forEach((element) => {
-            if (element.question_code === 'TAXA') {
+            if (element.question_code === "TAXA") {
               csvOutDataObj.taxa = element.value;
             }
           });
@@ -446,39 +446,39 @@ export async function getFieldQgiAnswerCounts(
 
     qgiAnswerCounts.stop();
 
-    if (exp.toUpperCase() === 'YES' || exp.toUpperCase() === 'Y') {
+    if (exp.toUpperCase() === "YES" || exp.toUpperCase() === "Y") {
       // Export to CSV file
-      await convertToCsv(qgiCsvOutData, './', 'Field_QGI_Answer_Counts');
+      await convertToCsv(qgiCsvOutData, "./", "Field_QGI_Answer_Counts");
 
-      console.log('');
+      console.log("");
       console.log(
         `Exported ${qgiCsvOutData.length} record(s) to Field_QGI_Answer_Counts.csv`
       );
-      console.log('');
+      console.log("");
     }
 
-    console.log('');
+    console.log("");
     console.log(`Returning data for ${qgiCsvOutData.length} record(s).`);
-    console.log('');
+    console.log("");
     return qgiCsvOutData;
   } else {
-    console.log('');
-    console.log('No QGIs found... ¯\\_(ツ)_/¯');
-    console.log('');
+    console.log("");
+    console.log("No QGIs found... ¯\\_(ツ)_/¯");
+    console.log("");
   }
 }
 
 // Get answer counts and other useful metadata from Compliance Answers NP and Prod for each QGI.
 export async function getComplianceQgiAnswerCounts(
-  arr = isRequired('Array of QGIs'),
-  exp = 'NO'
+  arr = isRequired("Array of QGIs"),
+  exp = "NO"
 ) {
   const qgiCsvOutData = [];
 
   if (arr.length !== 0) {
-    console.log('');
+    console.log("");
     console.log(`Searching for ${arr.length} QGI(s) in Compliance Answers...`);
-    console.log('');
+    console.log("");
 
     const qgiAnswerCounts = new cliProgress.SingleBar(
       {},
@@ -491,15 +491,15 @@ export async function getComplianceQgiAnswerCounts(
       const element = arr[index];
       const csvOutDataObj = {
         QGI: element[0],
-        is_deactivated: '',
-        primary_question: '',
-        taxa: '',
-        np_answer_count: '',
-        np_answer_time: '',
-        np_update_time: '',
-        prod_answer_count: '',
-        prod_answer_time: '',
-        prod_update_time: '',
+        is_deactivated: "",
+        primary_question: "",
+        taxa: "",
+        np_answer_count: "",
+        np_answer_time: "",
+        np_update_time: "",
+        prod_answer_count: "",
+        prod_answer_time: "",
+        prod_update_time: "",
       };
       // NP query for answer count
       const npCountQuery = `select count(*) as np_answer_count from ${process.env.CSW_COMPLIANCE_ANSWERS} where question_group_instance="${element[0]}";`;
@@ -516,7 +516,7 @@ export async function getComplianceQgiAnswerCounts(
         const [prodJob] = await bigquery.createQueryJob(prodCountQuery);
         const [prodResult] = await prodJob.getQueryResults();
         // Get NP token
-        const authToken = await getAuthToken('NP');
+        const authToken = await getAuthToken("NP");
 
         // Check to see if the QGI is deactivated
         await axios
@@ -529,9 +529,9 @@ export async function getComplianceQgiAnswerCounts(
           )
           .then((response) => {
             if (response.data) {
-              csvOutDataObj.is_deactivated = 'false';
+              csvOutDataObj.is_deactivated = "false";
             } else {
-              csvOutDataObj.is_deactivated = 'true';
+              csvOutDataObj.is_deactivated = "true";
             }
           });
 
@@ -548,7 +548,7 @@ export async function getComplianceQgiAnswerCounts(
           csvOutDataObj.np_update_time =
             npResult2[0].modified_answered_time.value;
           secondaryAnswers.forEach((element) => {
-            if (element.question_code === 'TAXA') {
+            if (element.question_code === "TAXA") {
               csvOutDataObj.taxa = element.value;
             }
           });
@@ -564,7 +564,7 @@ export async function getComplianceQgiAnswerCounts(
           csvOutDataObj.prod_update_time =
             prodResult2[0].modified_answered_time.value;
           secondaryAnswers.forEach((element) => {
-            if (element.question_code === 'TAXA') {
+            if (element.question_code === "TAXA") {
               csvOutDataObj.taxa = element.value;
             }
           });
@@ -585,24 +585,24 @@ export async function getComplianceQgiAnswerCounts(
 
     qgiAnswerCounts.stop();
 
-    if (exp.toUpperCase() === 'YES' || exp.toUpperCase() === 'Y') {
+    if (exp.toUpperCase() === "YES" || exp.toUpperCase() === "Y") {
       // Export to CSV file
-      await convertToCsv(qgiCsvOutData, './', 'Compliance_QGI_Answer_Counts');
+      await convertToCsv(qgiCsvOutData, "./", "Compliance_QGI_Answer_Counts");
 
-      console.log('');
+      console.log("");
       console.log(
         `Exported ${qgiCsvOutData.length} record(s) to Compliance_QGI_Answer_Counts.csv`
       );
-      console.log('');
+      console.log("");
     }
 
-    console.log('');
+    console.log("");
     console.log(`Returning data for ${qgiCsvOutData.length} record(s).`);
-    console.log('');
+    console.log("");
     return qgiCsvOutData;
   } else {
-    console.log('');
-    console.log('No QGIs found... ¯\\_(ツ)_/¯');
-    console.log('');
+    console.log("");
+    console.log("No QGIs found... ¯\\_(ツ)_/¯");
+    console.log("");
   }
 }
