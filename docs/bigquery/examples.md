@@ -41,7 +41,7 @@ console.log(util.inspect(qgiResults, false, null, true));
 {
   csvData: [
     {
-      questionCode: 'PBCH',
+      questionCode: 'Some Code',
       np_primary_answer_count: 4,
       np_secondary_answer_count: 0,
       np_QGIs: [ 'C2959-I3' ],
@@ -50,7 +50,7 @@ console.log(util.inspect(qgiResults, false, null, true));
       prod_QGIs: []
     },
     {
-      questionCode: 'DRYINDT',
+      questionCode: 'Another Code',
       np_primary_answer_count: 0,
       np_secondary_answer_count: 0,
       np_QGIs: [],
@@ -72,7 +72,7 @@ console.log(util.inspect(qgiResults, false, null, true));
   {
     QGI: "C2959-I3",
     is_deactivated: "false",
-    primary_question: "PBCH",
+    primary_question: "Some Code",
     taxa: "Broccoli",
     np_answer_count: 4,
     np_answer_time: "2022-03-16T04:29:09.119Z",
@@ -84,7 +84,7 @@ console.log(util.inspect(qgiResults, false, null, true));
   {
     QGI: "C3595-I1",
     is_deactivated: "false",
-    primary_question: "DRYINDT",
+    primary_question: "Another Code",
     taxa: "Corn",
     np_answer_count: 0,
     np_answer_time: "",
