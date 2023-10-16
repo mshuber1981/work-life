@@ -81,8 +81,8 @@ console.log(util.inspect(qgiResults, false, null, true));
   },
   {
     QGI: "C3595-I1",
-    is_deactivated: "Another Code",
-    primary_question: "DRYINDT",
+    is_deactivated: "false",
+    primary_question: "Another Code",
     taxa: "Corn",
     np_answer_count: 0,
     np_answer_time: "",
