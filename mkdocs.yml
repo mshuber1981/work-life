@@ -52,7 +52,6 @@ extra:
 nav:
   - Home: index.md
   - My Local Dev Environment: devEnv.md
-  - Recent Projects: recent.md
   - Functions:
       - Functions - Getting Started: functions/index.md
       - Oauth2 Tokens: functions/auth.md
@@ -60,7 +59,5 @@ nav:
       - General Stuff: functions/general.md
   - REST APIs:
       - REST APIS - Getting Started: rest/index.md
-      - Examples: rest/examples.md
   - BigQuery:
       - BigQuery - Getting Started: bigquery/index.md
-      - Examples: bigquery/examples.md

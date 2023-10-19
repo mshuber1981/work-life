@@ -1,7 +1,5 @@
 # Automating my work life
 
-This repo is a collection of lengthy, repetitive, and ultimately unsatisfying tasks from work I have automated out of my life forever! I enjoy learning about technology that can make my life easier, and sharing it with others to make their lives easier.
-
 > I chose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.
 
 — Bill Gates
