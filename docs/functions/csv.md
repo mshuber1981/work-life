@@ -14,7 +14,7 @@ CSV files are a big part of my work life.
 
 [Example CSV file (test.csv)](https://github.com/mshuber1981/work-life/blob/main/test.csv)
 
-[index.js line 6](https://github.com/mshuber1981/work-life/blob/main/index.js#L6)
+[index.js line 4](https://github.com/mshuber1981/work-life/blob/main/index.js#L4)
 
 ```javascript linenums="1"
 // Set CSV file name
@@ -40,5 +40,5 @@ try {
 ```bash
 Reading test.csv
 Converting test.csv to an array:
-[ [ 'PATHOGEN', 'SCINAME' ], [ 'PHT', 'CM' ], [ 'test', 'test' ] ]
+[ [ 'Stuff', 'Different stuff' ], [ 'test', 'test' ] ]
 ```
