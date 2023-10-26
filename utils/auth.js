@@ -43,17 +43,13 @@ const getProdAuth = oauth.clientCredentials(
   prodVault.data.secret
 );
 
-export default async function getAuthToken(
-  env = isRequired("env (NP or PROD)")
-) {
+const getAuthToken = async (env = isRequired("env (NP or PROD)")) => {
   try {
     if (env.toUpperCase() === "NP") {
       const auth = await getAuth(`${npVault.data.client_id}/.default`);
-
       return auth;
     } else if (env.toUpperCase() === "PROD") {
       const auth = await getProdAuth(`${prodVault.data.client_id}/.default`);
-
       return auth;
     } else {
       throw new Error(
@@ -63,4 +59,6 @@ export default async function getAuthToken(
   } catch (error) {
     throw new Error(error.code);
   }
-}
+};
+
+export default getAuthToken;
