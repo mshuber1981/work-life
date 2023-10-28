@@ -14,10 +14,20 @@ try {
   }
   const vault = await execPromise("vault -v");
   console.log(vault);
+  const gcloud = await execPromise("gcloud version");
+  console.log(gcloud);
 } catch (error) {
-  console.warn(
-    "\x1b[33m%s\x1b[0m",
-    "Warning, part of this project relies on the Vault cli to access client ids and secrets."
-  );
-  console.log(error);
+  if (error.message.includes("vault")) {
+    console.warn(
+      "\x1b[33m%s\x1b[0m",
+      "Warning, part of this project relies on the Vault CLI to access client ids and secrets."
+    );
+  }
+  if (error.message.includes("gloud")) {
+    console.warn(
+      "\x1b[33m%s\x1b[0m",
+      "Warning, part of this project relies on the Google Cloud CLI to access client ids and secrets."
+    );
+  }
+  console.log(error.message);
 }
