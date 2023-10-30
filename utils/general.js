@@ -2,12 +2,13 @@
 import { exec } from "child_process";
 
 // Require a parameter
-export default function isRequired(param) {
+export const isRequired = (param) => {
   throw new Error(`${param} is required!`);
 }
 
+
 // Run a terminal command and then wait for/return the output
-export function execPromise(command = isRequired("Terminal Command (string)")) {
+export const execPromise = (command = isRequired("Terminal Command (string)")) => {
   return new Promise(function (resolve, reject) {
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -23,3 +24,5 @@ export function execPromise(command = isRequired("Terminal Command (string)")) {
     });
   });
 }
+
+export default isRequired;
