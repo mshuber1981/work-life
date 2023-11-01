@@ -16,15 +16,17 @@ export const convertToCsv = async (
 };
 
 // Covert CSV data to an array
-export const csvToArray = (data = isRequired("CSV data"),
-delimiter = ",",
-omitFirstRow = true) => {
+export const csvToArray = (
+  data = isRequired("CSV data"),
+  delimiter = ",",
+  omitFirstRow = true
+) => {
   let tempData = data
     .slice(omitFirstRow ? data.indexOf("\n") + 1 : 0)
     .split("\n")
     .map((v) => v.replace(/\r?\n|\r/g, "").split(delimiter));
   tempData.pop();
   return tempData;
-}
+};
 
 export default csvToArray;
