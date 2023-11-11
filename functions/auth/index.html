@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
@@ -445,6 +445,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../excel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Excel Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../general/" class="md-nav__link">
         
   
@@ -653,17 +673,7 @@
 <p>I love <a href="https://axios-http.com/">Axios</a>, and this is a great OAuth 2.0 client for Axios - <a href="https://github.com/compwright/axios-oauth-client">axios-oauth-client</a></p>
 </li>
 </ol>
-<div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="k">import</span><span class="w"> </span><span class="nx">axios</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;axios&quot;</span><span class="p">;</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><span class="k">import</span><span class="w"> </span><span class="nx">axios</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;axios&quot;</span><span class="p">;</span>
 </span><span id="__span-0-2"><span class="k">import</span><span class="w"> </span><span class="nx">oauth</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;axios-oauth-client&quot;</span><span class="p">;</span>
 </span><span id="__span-0-3"><span class="kd">const</span><span class="w"> </span><span class="nx">getClientCredentials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">oauth</span><span class="p">.</span><span class="nx">clientCredentials</span><span class="p">(</span>
 </span><span id="__span-0-4"><span class="w">  </span><span class="nx">axios</span><span class="p">.</span><span class="nx">create</span><span class="p">(),</span>
@@ -674,23 +684,10 @@
 </span><span id="__span-0-9">
 </span><span id="__span-0-10"><span class="kd">const</span><span class="w"> </span><span class="nx">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getClientCredentials</span><span class="p">(</span><span class="s2">&quot;OPTIONAL_SCOPES&quot;</span><span class="p">);</span>
 </span><span id="__span-0-11"><span class="c1">// =&gt; { &quot;access_token&quot;: &quot;...&quot;, &quot;expires_in&quot;: 900, ... }</span>
-</span></code></pre></div></td></tr></table></div>
+</span></code></pre></div>
 <h2 id="example-axios-oauth-client-usage">Example axios-oauth-client usage<a class="headerlink" href="#example-axios-oauth-client-usage" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/mshuber1981/work-life/blob/main/utils/auth.js#L31">auth.js line 31</a></p>
-<div class="language-javascript highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="c1">// Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-1-1"><span class="c1">// Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant</span>
 </span><span id="__span-1-2"><span class="kd">const</span><span class="w"> </span><span class="nx">getAuth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">oauth</span><span class="p">.</span><span class="nx">clientCredentials</span><span class="p">(</span>
 </span><span id="__span-1-3"><span class="w">  </span><span class="nx">axios</span><span class="p">.</span><span class="nx">create</span><span class="p">(),</span>
 </span><span id="__span-1-4"><span class="w">  </span><span class="nx">oauthEndpoint</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="s2">&quot;aad-oauth-url&quot;</span><span class="p">],</span>
@@ -704,7 +701,7 @@
 </span><span id="__span-1-12"><span class="w">  </span><span class="nx">prodVault</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">client_id</span><span class="p">,</span>
 </span><span id="__span-1-13"><span class="w">  </span><span class="nx">prodVault</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">secret</span>
 </span><span id="__span-1-14"><span class="p">);</span>
-</span></code></pre></div></td></tr></table></div>
+</span></code></pre></div>
 
 
 
@@ -801,7 +798,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.footer"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
       
     
   </body>
