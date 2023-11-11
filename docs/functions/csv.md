@@ -14,9 +14,9 @@ CSV files are a big part of my work life.
 
 [Example CSV file (test.csv)](https://github.com/mshuber1981/work-life/blob/main/test.csv)
 
-[index.js line 4](https://github.com/mshuber1981/work-life/blob/main/index.js#L4)
+[index.js line 9](https://github.com/mshuber1981/work-life/blob/main/index.js#L9)
 
-```javascript linenums="1"
+```javascript
 // Set CSV file name
 const csvFileName = "test";
 let csvArray;

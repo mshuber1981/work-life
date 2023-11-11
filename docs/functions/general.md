@@ -8,7 +8,7 @@ One way to deal with required function parameters in JavaScript - [CSS-tricks.co
 
 ### Example isRequired usage
 
-```javascript linenums="1"
+```javascript
 const logName = (name = isRequired("Name")) => console.log(name);
 
 logName();
@@ -32,7 +32,7 @@ I needed a way to run a terminal command in Node and wait for the results. This 
 
 ### Example execPromise usage
 
-```javascript linenums="1"
+```javascript
 const whoAmI = (command) =>
   execPromise(command).then((response) => console.log(response));
 

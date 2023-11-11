@@ -6,7 +6,7 @@ Most of the APIs I am interacting with are secured with OAuth2.
 
 2. I love [Axios](https://axios-http.com/), and this is a great OAuth 2.0 client for Axios - [axios-oauth-client](https://github.com/compwright/axios-oauth-client)
 
-   ```javascript linenums="1"
+   ```javascript
    import axios from "axios";
    import oauth from "axios-oauth-client";
    const getClientCredentials = oauth.clientCredentials(
@@ -24,7 +24,7 @@ Most of the APIs I am interacting with are secured with OAuth2.
 
 [auth.js line 31](https://github.com/mshuber1981/work-life/blob/main/utils/auth.js#L31)
 
-```javascript linenums="1"
+```javascript
 // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
 const getAuth = oauth.clientCredentials(
   axios.create(),
