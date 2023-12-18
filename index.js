@@ -9,7 +9,8 @@ import csvToArray from "./utils/csv.js";
 const csvFileName = "test";
 let csvArray;
 const bigquery = new BigQuery();
-const query = ``;
+const table = "`bigquery-public-data.country_codes.country_codes`";
+const query = `SELECT country_name as Country, alpha_2_code as Two_Char_Code, alpha_3_code as Three_Char_Code FROM ${table};`;
 
 set_fs(fs);
 try {
@@ -59,10 +60,12 @@ try {
 }
 
 try {
-  const data = [];
+  let data;
   console.log("Querying ISO Country Codes...");
   const [job] = await bigquery.createQueryJob(query);
   const [result] = await job.getQueryResults();
+  // Create workbook
+  const workbook = utils.book_new();
   // Worksheet
   data = [...result];
   const worksheet = utils.json_to_sheet(data);
