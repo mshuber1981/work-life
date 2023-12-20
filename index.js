@@ -2,17 +2,14 @@ import * as fs from "fs";
 import "dotenv/config";
 import axios from "axios";
 import { writeFile, utils, set_fs } from "xlsx";
+set_fs(fs);
 import { BigQuery } from "@google-cloud/bigquery";
 import csvToArray from "./utils/csv.js";
 
 // Set CSV file name
 const csvFileName = "test";
 let csvArray;
-const bigquery = new BigQuery();
-const table = "`bigquery-public-data.country_codes.country_codes`";
-const query = `SELECT country_name as Country, alpha_2_code as Two_Char_Code, alpha_3_code as Three_Char_Code FROM ${table};`;
 
-set_fs(fs);
 try {
   // Read CSV file
   console.log(`Reading ${csvFileName}.csv`);
@@ -58,6 +55,10 @@ try {
 } catch (error) {
   console.log(error.code);
 }
+
+const bigquery = new BigQuery();
+const table = "`bigquery-public-data.country_codes.country_codes`";
+const query = `SELECT country_name as Country, alpha_2_code as Two_Char_Code, alpha_3_code as Three_Char_Code FROM ${table};`;
 
 try {
   let data;
