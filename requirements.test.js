@@ -2,9 +2,15 @@ import * as fs from "fs";
 import "dotenv/config";
 import { execPromise } from "./utils/general.js";
 
-// Check for .env file
-test("Checking for .env file...", () => {
-  expect(fs.existsSync(".env")).toBe(true);
+// Check for .env API_URL variable
+test("Checking for .env API_URL variable...", () => {
+  expect(typeof process.env.API_URL).toBe("string");
+});
+// 
+test("Checking for .env oauth related variables...", () => {
+  expect(typeof process.env.NP_SECRETS).toBe("string");
+  expect(typeof process.env.PROD_SECRETS).toBe("string");
+  expect(typeof process.env.OAUTH_ENDPOINT).toBe("string");
 });
 // Check for Vault CLI
 test("Checking for Vault CLI...", async () => {
