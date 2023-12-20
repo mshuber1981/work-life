@@ -8,7 +8,7 @@ CSV files are a big part of my work life.
 
 1. Learning to read files with Node.js - [https://nodejs.dev/en/learn/reading-files-with-nodejs/](https://nodejs.dev/en/learn/reading-files-with-nodejs/)
 
-2. Converting CSV file read data to an array - [CSVToArray (CSV.js line 18)](https://github.com/mshuber1981/work-life/blob/main/present/functions/CSV.js#L18)
+2. Converting CSV file read data to an array - [csvToArray (csv.js line 18)](https://github.com/mshuber1981/work-life/blob/main/utils/csv.js#L18)
 
 ## Example usage
 
