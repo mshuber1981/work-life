@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import "dotenv/config";
 import { execPromise } from "./utils/general.js";
 

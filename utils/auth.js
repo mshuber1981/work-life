@@ -1,6 +1,5 @@
 // https://github.com/motdotla/dotenv
-import * as dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";
 // https://github.com/axios/axios
 import axios from "axios";
 // https://github.com/compwright/axios-oauth-client
