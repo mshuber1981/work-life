@@ -22,7 +22,7 @@ Most of the APIs I am interacting with are secured with OAuth2.
 
 ## Example axios-oauth-client usage
 
-[auth.js line 31](https://github.com/mshuber1981/work-life/blob/main/utils/auth.js#L30)
+[auth.js line 30](https://github.com/mshuber1981/work-life/blob/main/utils/auth.js#L30)
 
 ```javascript
 // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
