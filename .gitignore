@@ -109,7 +109,7 @@ dist
 # MkDocs site directory
 site/
 
-# tempt directory
+# temp directory
 temp/
 
 # current work related projects
