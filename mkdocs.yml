@@ -4,6 +4,7 @@ repo_name: GitHub
 site_description: Automating my work life...
 theme:
   name: material
+  custom_dir: overrides
   features:
     - content.code.copy
     - navigation.footer
