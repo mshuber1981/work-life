@@ -18,9 +18,9 @@ If my work life was a story, every chapter would start off something like this..
 
 ## Requirements
 
-1. [.env file](https://github.com/motdotla/dotenv) - I am using a local .env file to access sensitive info like API urls
+1. [.env file](https://github.com/motdotla/dotenv) - I am using a local .env file to access sensitive info like API urls and Vault paths
 
-2. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access secrets for API calls ([example](https://github.com/mshuber1981/work-life/blob/main/present/functions/Auth.js#L12))
+2. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access secrets for API calls ([example](https://github.com/mshuber1981/work-life/blob/main/utils/auth.js#L12))
 
 3. [Google Cloud](https://cloud.google.com/sdk/docs/install#mac) - I am using the gcloud CLI to authenticate and access BigQuery
 
@@ -30,9 +30,13 @@ If my work life was a story, every chapter would start off something like this..
    gcloud auth application-default login
    ```
 
-4. [:page_facing_up: MkDocs](https://www.mkdocs.org/) :point_down:
+### Requirements testing
 
-### Getting started with MkDocs
+```bash
+npm run test
+```
+
+## Getting started with MkDocs
 
 1. Requirements - [https://www.mkdocs.org/user-guide/installation/#requirements](https://www.mkdocs.org/user-guide/installation/#requirements)
 2. Installing MkDocs - [https://www.mkdocs.org/user-guide/installation/#installing-mkdocs](https://www.mkdocs.org/user-guide/installation/#installing-mkdocs)
