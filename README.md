@@ -33,6 +33,10 @@ If my work life was a story, every chapter would start off something like this..
 ### Requirements testing
 
 ```bash
+npm run test
+```
+
+```bash
 PASS  ./requirements.test.js
    ✓ Checking for .env API_URL variable... (2 ms)
    ✓ Checking for Vault CLI... (517 ms)
