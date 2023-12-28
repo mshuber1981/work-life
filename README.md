@@ -33,7 +33,17 @@ If my work life was a story, every chapter would start off something like this..
 ### Requirements testing
 
 ```bash
-npm run test
+PASS  ./requirements.test.js
+   ✓ Checking for .env API_URL variable... (2 ms)
+   ✓ Checking for Vault CLI... (517 ms)
+   ✓ Checking for .env OAuth related variables...
+   ✓ Checking for Google Cloud CLI... (1337 ms)
+
+   Test Suites: 1 passed, 1 total
+   Tests:       4 passed, 4 total
+   Snapshots:   0 total
+   Time:        2.073 s
+   Ran all test suites.
 ```
 
 ## Getting started with MkDocs
