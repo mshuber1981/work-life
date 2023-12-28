@@ -20,7 +20,7 @@ I got interested in programming because I hate long, annoying, repetitive tasks.
 
 #### Example code
 
-```javascript linenums="1"
+```javascript
 // A list of things
 const list = [
   "Thing 1",
