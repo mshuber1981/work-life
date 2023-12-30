@@ -1,3 +1,4 @@
+// First release!
 import * as fs from "fs";
 import "dotenv/config";
 import axios from "axios";
