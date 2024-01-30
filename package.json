@@ -22,7 +22,7 @@
   "homepage": "https://github.com/mshuber1981/work-life#readme",
   "dependencies": {
     "@google-cloud/bigquery": "^7.3.0",
-    "axios": "^1.6.3",
+    "axios": "^1.6.7",
     "axios-oauth-client": "^2.0.2",
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
