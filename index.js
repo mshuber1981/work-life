@@ -1,14 +1,14 @@
-// First release!
 import * as fs from "fs";
 import "dotenv/config";
 import axios from "axios";
 import { writeFile, utils, set_fs } from "xlsx";
 set_fs(fs);
 import { BigQuery } from "@google-cloud/bigquery";
+import chalk from "chalk";
 import csvToArray from "./utils/csv.js";
 
 // Set CSV file name
-const csvFileName = "test";
+const csvFileName = "testasdf";
 let csvArray;
 
 try {
@@ -20,7 +20,7 @@ try {
   console.log(`Converting ${csvFileName}.csv to an array:`);
   console.log(csvArray);
 } catch (error) {
-  console.log(`${error.message} (check csvFilename - line 5)`);
+  console.log(`${chalk.red(error.message)} (check csvFilename - line 5)`);
 }
 
 try {
@@ -51,10 +51,10 @@ try {
   // Append NP worksheets to workbook
   utils.book_append_sheet(workbook, worksheet, "Repos");
   // Export workbook
-  console.log("Exporting results to My_GitHub_repos.xlsx");
+  console.log(chalk.red("Exporting results to My_GitHub_repos.xlsx"));
   writeFile(workbook, "My_GitHub_repos.xlsx");
 } catch (error) {
-  console.log(error.code);
+  console.log(chalk.red(error.code));
 }
 
 const bigquery = new BigQuery();
@@ -81,8 +81,8 @@ try {
   // Append NP worksheet to workbook
   utils.book_append_sheet(workbook, worksheet, "ISO Country Codes");
   // Export workbook
-  console.log("Exporting results to ISO_Country_Codes.xlsx");
+  console.log(chalk.green("Exporting results to ISO_Country_Codes.xlsx"));
   writeFile(workbook, "ISO_Country_Codes.xlsx");
 } catch (error) {
-  console.log(error);
+  console.log(chalk.red(error));
 }
