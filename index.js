@@ -1,14 +1,15 @@
-import * as fs from "fs";
+
 import "dotenv/config";
+import fs from "fs";
 import axios from "axios";
+import chalk from "chalk";
+import csvToArray from "./utils/csv.mjs"
+import { BigQuery } from "@google-cloud/bigquery";
 import { writeFile, utils, set_fs } from "xlsx";
 set_fs(fs);
-import { BigQuery } from "@google-cloud/bigquery";
-import chalk from "chalk";
-import csvToArray from "./utils/csv.js";
 
 // Set CSV file name
-const csvFileName = "testasdf";
+const csvFileName = "test";
 let csvArray;
 
 try {
@@ -51,7 +52,7 @@ try {
   // Append NP worksheets to workbook
   utils.book_append_sheet(workbook, worksheet, "Repos");
   // Export workbook
-  console.log(chalk.red("Exporting results to My_GitHub_repos.xlsx"));
+  console.log(chalk.green("Exporting results to My_GitHub_repos.xlsx"));
   writeFile(workbook, "My_GitHub_repos.xlsx");
 } catch (error) {
   console.log(chalk.red(error.code));
