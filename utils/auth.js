@@ -4,8 +4,8 @@ import "dotenv/config";
 import axios from "axios";
 // https://github.com/compwright/axios-oauth-client
 import oauth from "axios-oauth-client";
-import isRequired from "./general.js";
-import { execPromise } from "./general.js";
+import isRequired from "./general.mjs";
+import { execPromise } from "./general.mjs";
 
 let npVault, prodVault, oauthEndpoint;
 

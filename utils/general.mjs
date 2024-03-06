@@ -19,7 +19,6 @@ export const execPromise = (command = isRequired("Terminal Command (string)")) =
         reject(stderr);
         return;
       }
-
       resolve(stdout.trim());
     });
   });

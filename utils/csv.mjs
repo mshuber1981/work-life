@@ -1,7 +1,7 @@
 import path from "path";
 // https://www.npmjs.com/package/objects-to-csv
 import ObjectsToCsv from "objects-to-csv";
-import isRequired from "./general.js";
+import isRequired from "./general.mjs";
 
 // Covert objects to CSV file
 export const convertToCsv = async (
