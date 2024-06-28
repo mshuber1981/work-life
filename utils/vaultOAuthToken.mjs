@@ -21,6 +21,7 @@ export const getToken = async (
     );
     secrets = JSON.parse(vaultSecretData);
     url = JSON.parse(vaultOAuthUrlData);
+    // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
     const getAuth = oauth.clientCredentials(
       axios.create(),
       url.data[oAuthKey],

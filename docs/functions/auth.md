@@ -22,21 +22,15 @@ Most of the APIs I am interacting with are secured with OAuth2.
 
 ## Example axios-oauth-client usage
 
-[auth.js line 30](https://github.com/mshuber1981/work-life/blob/main/utils/auth.js#L30)
+[vaultOAuthToken.mjs line 24](https://github.com/mshuber1981/work-life/blob/main/utils/vaultOAuthToken.mjs#L24)
 
 ```javascript
 // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
 const getAuth = oauth.clientCredentials(
   axios.create(),
-  oauthEndpoint.data["aad-oauth-url"],
-  npVault.data.client_id,
-  npVault.data.secret
+  url.data[oAuthKey],
+  secrets.data[clientIdKey],
+  secrets.data[secretKey]
 );
-
-const getProdAuth = oauth.clientCredentials(
-  axios.create(),
-  oauthEndpoint.data["aad-oauth-url"],
-  prodVault.data.client_id,
-  prodVault.data.secret
-);
+auth = await getAuth(`${secrets.data[clientIdKey]}/.default`);
 ```
