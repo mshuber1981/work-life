@@ -4,8 +4,6 @@
 
 — Bill Gates
 
-I am not ~~too~~ lazy, but I do not enjoy performing a repetitive task for hours on end when I could write a script to do the same thing in a few seconds. I do enjoy learning about technology that can make my life easier and sharing it with other people to make their lives easier.
-
 ## The usual
 
 If my work life was a story, every chapter would start something like this...
