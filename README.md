@@ -40,9 +40,10 @@ PASS  ./requirements.test.js
    ✓ Checking for Vault CLI... (517 ms)
    ✓ Checking for .env OAuth related variables...
    ✓ Checking for Google Cloud CLI... (1337 ms)
+   ✓ Checking for .env PROJECT_ID variable...
 
    Test Suites: 1 passed, 1 total
-   Tests:       4 passed, 4 total
+   Tests:       5 passed, 5 total
    Snapshots:   0 total
    Time:        2.073 s
    Ran all test suites.
