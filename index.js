@@ -1,9 +1,8 @@
-
 import "dotenv/config";
 import fs from "fs";
 import axios from "axios";
 import chalk from "chalk";
-import csvToArray from "./utils/csv.mjs"
+import csvToArray from "./utils/csv.mjs";
 import { BigQuery } from "@google-cloud/bigquery";
 import { writeFile, utils, set_fs } from "xlsx";
 set_fs(fs);
@@ -58,7 +57,9 @@ try {
   console.log(chalk.red(error.code));
 }
 
-const bigquery = new BigQuery();
+const bigquery = new BigQuery({
+  projectId: process.env.PROJECT_ID,
+});
 const table = "`bigquery-public-data.country_codes.country_codes`";
 const query = `SELECT country_name as Country, alpha_2_code as Two_Char_Code, alpha_3_code as Three_Char_Code FROM ${table};`;
 
