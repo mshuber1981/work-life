@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { execPromise } from "./utils/general.js";
+import { execPromise } from "./utils/general.mjs";
 
 // Check for .env API_URL variable
 test("Checking for .env API_URL variable...", () => {
@@ -20,4 +20,8 @@ test("Checking for .env OAuth related variables...", () => {
 test("Checking for Google Cloud CLI...", async () => {
   const gCli = await execPromise("gcloud version");
   expect(typeof gCli).toBe("string");
+});
+// Check for .env PROJECT_ID variable
+test("Checking for .env PROJECT_ID variable...", () => {
+  expect(typeof process.env.PROJECT_ID).toBe("string");
 });
