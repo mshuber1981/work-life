@@ -16,11 +16,9 @@ If my work life was a story, every chapter would start off something like this..
 
 ## Requirements
 
-1. [.env file](https://github.com/motdotla/dotenv) - I am using a local .env file to access sensitive info like API urls and Vault paths
+1. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access secrets for API calls ([vaultOAuthToken.mjs line 15](https://github.com/mshuber1981/work-life/blob/main/utils/vaultOAuthToken.mjs#L15))
 
-2. [Vault](https://developer.hashicorp.com/vault/downloads) - I am using the Vault CLI to access secrets for API calls ([vaultOAuthToken.mjs line 15](https://github.com/mshuber1981/work-life/blob/main/utils/vaultOAuthToken.mjs#L15))
-
-3. [Google Cloud](https://cloud.google.com/sdk/docs/install#mac) - I am using the gcloud CLI to authenticate and access BigQuery
+2. [Google Cloud](https://cloud.google.com/sdk/docs/install#deb) - I am using the gcloud CLI to authenticate and access BigQuery
 
    [gcloud CLI - Authorize with a user account](https://cloud.google.com/sdk/docs/authorizing#authorize_with_a_user_account)
 
@@ -36,24 +34,12 @@ npm run test
 
 ```bash
 PASS  ./requirements.test.js
-   ✓ Checking for .env API_URL variable... (2 ms)
-   ✓ Checking for Vault CLI... (517 ms)
-   ✓ Checking for .env OAuth related variables...
-   ✓ Checking for Google Cloud CLI... (1337 ms)
-   ✓ Checking for .env PROJECT_ID variable...
+   ✓ Checking for Vault CLI... (13 ms)
+   ✓ Checking for Google Cloud CLI... (901 ms)
 
    Test Suites: 1 passed, 1 total
-   Tests:       5 passed, 5 total
+   Tests:       2 passed, 2 total
    Snapshots:   0 total
-   Time:        2.073 s
+   Time:        1.161 s
    Ran all test suites.
 ```
-
-## Getting started with MkDocs
-
-1. Requirements - [https://www.mkdocs.org/user-guide/installation/#requirements](https://www.mkdocs.org/user-guide/installation/#requirements)
-2. Installing MkDocs - [https://www.mkdocs.org/user-guide/installation/#installing-mkdocs](https://www.mkdocs.org/user-guide/installation/#installing-mkdocs)
-3. Themes (material) - [https://github.com/squidfunk/mkdocs-material#quick-start](https://github.com/squidfunk/mkdocs-material#quick-start)
-4. Formatting options (markdown_extensions) - [https://www.mkdocs.org/user-guide/configuration/#formatting-options](https://www.mkdocs.org/user-guide/configuration/#formatting-options)
-5. Run the builtin development server - [https://www.mkdocs.org/user-guide/cli/#mkdocs-serve](https://www.mkdocs.org/user-guide/cli/#mkdocs-serve)
-6. Deployment options - [https://www.mkdocs.org/user-guide/deploying-your-docs/](https://www.mkdocs.org/user-guide/deploying-your-docs/)
