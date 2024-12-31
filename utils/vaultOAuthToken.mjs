@@ -1,5 +1,5 @@
 import axios from "axios";
-import oauth from "axios-oauth-client";
+import { clientCredentials } from 'axios-oauth-client'
 import isRequired from "./general.mjs";
 import { execPromise } from "./general.mjs";
 
@@ -22,7 +22,7 @@ export const getToken = async (
     secrets = JSON.parse(vaultSecretData);
     url = JSON.parse(vaultOAuthUrlData);
     // Client Credentials grant - https://github.com/compwright/axios-oauth-client#client-credentials-grant
-    const getAuth = oauth.clientCredentials(
+    const getAuth = clientCredentials(
       axios.create(),
       url.data[oAuthKey],
       secrets.data[clientIdKey],
