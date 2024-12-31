@@ -1,6 +1,6 @@
 # My Local Development Environment
 
-I have been using and supporting Windows for over a decade, so it is the operating system I am most comfortable with. I have used a Mac in the past, and most of the Developers I have interacted with over the years seem to prefer it. In my current role, I have to use Windows, but all of the Developers use a Mac. The Mac operating system is Unix-based, so having access to a Linux-based terminal is a great substitute. Windows Subsystem for Linux (WSL) is currently my preferred development environment.
+Basic setup to get started with the examples in this project.
 
 ## WSL, VS Code, and Git
 
@@ -36,18 +36,46 @@ The Missing Package Manager for macOS (or Linux) [^1]
 
 nvm allows you to quickly install and use different versions of node via the command line. [^2]
 
-### Installation with Homebrew
+### nvm installation with Homebrew
 
 ```bash
 brew install nvm
 ```
 
-## Node.js on Windows
+## Node.js
 
 Node.js is an open-source, cross-platform JavaScript runtime environment. [^3]
 
-Get started with Node.js on WSL - [https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-overview](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-overview)
+## pyenv
+
+pyenv lets you easily switch between multiple versions of Python. It's simple, unobtrusive, and follows the UNIX tradition of single-purpose tools that do one thing well. [^4]
+
+### pyenv installation with Homebrew
+
+```bash
+brew install pyenv
+```
+
+## Python
+
+Python is a programming language that lets you work quickly and integrate systems more effectively. [^5]
+
+## MkDocs
+
+MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file. [^6]
+
+### Getting started with MkDocs
+
+1. Requirements - [https://www.mkdocs.org/user-guide/installation/#requirements](https://www.mkdocs.org/user-guide/installation/#requirements)
+2. Installing MkDocs - [https://www.mkdocs.org/user-guide/installation/#installing-mkdocs](https://www.mkdocs.org/user-guide/installation/#installing-mkdocs)
+3. Themes (material) - [https://github.com/squidfunk/mkdocs-material#quick-start](https://github.com/squidfunk/mkdocs-material#quick-start)
+4. Formatting options (markdown_extensions) - [https://www.mkdocs.org/user-guide/configuration/#formatting-options](https://www.mkdocs.org/user-guide/configuration/#formatting-options)
+5. Run the builtin development server - [https://www.mkdocs.org/user-guide/cli/#mkdocs-serve](https://www.mkdocs.org/user-guide/cli/#mkdocs-serve)
+6. Deployment options - [https://www.mkdocs.org/user-guide/deploying-your-docs/](https://www.mkdocs.org/user-guide/deploying-your-docs/)
 
 [^1]: [brew.sh](hhttps://cloud.google.com/bigquery/docs/introduction)
-[^2]: [https://github.com/nvm-sh/nvm#intro](https://github.com/nvm-sh/nvm#intro)
+[^2]: [https://github.com/nvm-sh](https://github.com/nvm-sh/nvm#intro)
 [^3]: [https://nodejs.org/en](https://nodejs.org/en)
+[^4]: [https://github.com/pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#simple-python-version-management-pyenv)
+[^5]: [https://www.python.org/](https://www.python.org/)
+[^6]: [https://www.mkdocs.org/](https://www.mkdocs.org/)
