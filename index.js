@@ -1,4 +1,3 @@
-import "dotenv/config";
 import fs from "fs";
 import axios from "axios";
 import chalk from "chalk";
@@ -25,7 +24,9 @@ try {
 
 try {
   console.log("Fetching GitHub projects...");
-  const result = await axios.get(process.env.API_URL);
+  const result = await axios.get(
+    "https://api.github.com/users/mshuber1981/repos"
+  );
   // Create workbook
   const workbook = utils.book_new();
   const data = [];
