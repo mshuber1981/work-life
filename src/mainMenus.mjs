@@ -106,7 +106,7 @@ export const userName = async () => {
     },
   });
 
-  return answers.user_name.toLowerCase();
+  return answers.user_name.trim().toLowerCase();
 };
 
 export default welcome;
