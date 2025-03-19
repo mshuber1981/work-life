@@ -5,6 +5,7 @@ import inquirer from "inquirer";
 import { createSpinner } from "nanospinner";
 import { sleep } from "./utils/general.mjs";
 import ghMenu from "./github/ghMenu.mjs";
+import bqMenu from "./bigQuery/bqMenu.mjs";
 
 // Welcome title text
 export const text = figlet.textSync("Work Life Tools");
@@ -21,7 +22,7 @@ export const mainMenu = async () => {
     name: "menu",
     type: "list",
     message: "What section?",
-    choices: ["GitHub API example", "Exit"],
+    choices: ["GitHub API example", "Google BigQuery example", "Exit"],
   });
 
   return handleMainSelection(answers.menu);
@@ -32,6 +33,11 @@ const handleMainSelection = async (selection) => {
     case "GitHub API example":
       console.clear();
       await ghMenu();
+
+      break;
+    case "Google BigQuery example":
+      console.clear();
+      await bqMenu();
 
       break;
     case "Exit":
