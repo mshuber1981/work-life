@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { execPromise } from "../utils/general.mjs";
+import { execPromise } from "../src/utils/general.mjs";
 
 // Check for Vault CLI
 test("Checking for Vault CLI...", async () => {
