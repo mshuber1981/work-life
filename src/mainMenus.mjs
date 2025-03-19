@@ -3,7 +3,7 @@ import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
 import inquirer from "inquirer";
 import { createSpinner } from "nanospinner";
-import { sleep } from "./utils/general.mjs";
+import { execPromise, sleep } from "./utils/general.mjs";
 import ghMenu from "./github/ghMenu.mjs";
 import bqMenu from "./bigQuery/bqMenu.mjs";
 
@@ -11,9 +11,42 @@ import bqMenu from "./bigQuery/bqMenu.mjs";
 export const text = figlet.textSync("Work Life Tools");
 // Welcome
 export const welcome = async (text) => {
+  // This command will fail if you do not have the gcloud CLI installed
+  const command =
+    'gcloud auth list --filter=status:ACTIVE --format="value(account)"';
+  let gcloud;
   const animation = chalkAnimation.rainbow(text);
   await sleep();
   animation.stop();
+  try {
+    gcloud = await execPromise(command);
+  } catch (error) {
+    console.log(error);
+    console.log(`
+  Part of this project uses the ${chalk.yellow(
+    "gcloud CLI"
+  )}. It must be installed and authorized with a user account to use the Google Cloud section.
+  More info can be found here ${chalk.green(
+    "https://cloud.google.com/sdk/docs/install#deb"
+  )}
+  and here ${chalk.green(
+    "https://cloud.google.com/sdk/docs/authorizing#authorize_with_a_user_account"
+  )}
+  `);
+  }
+
+  if (!["", null, undefined].includes(gcloud)) {
+    console.log(`Active gcloud account: ${gcloud}`);
+  } else {
+    console.log(`
+  ${chalk.yellow(
+    "Warning!"
+  )} You will need an active authorized Google Cloud account to use the BigQuery section.
+  More info can be found here ${chalk.green(
+    "https://cloud.google.com/sdk/docs/authorizing#authorize_with_a_user_account"
+  )}
+  `);
+  }
 };
 // Main menu
 export const mainMenu = async () => {
