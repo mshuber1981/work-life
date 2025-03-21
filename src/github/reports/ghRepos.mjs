@@ -21,7 +21,6 @@ const ghRepos = async () => {
     const result = await axios.get(
       `https://api.github.com/users/${ghUserName}/repos`
     );
-    // console.log(result);
     if (result.data.length !== 0) {
       // Create workbook
       const workbook = utils.book_new();
@@ -50,7 +49,7 @@ const ghRepos = async () => {
           Target: element.homepage,
         };
       }
-      // Append NP worksheets to workbook
+      // Append worksheet to workbook
       utils.book_append_sheet(workbook, worksheet, "Repos");
       // Export workbook
       console.log(
