@@ -56,11 +56,10 @@ nav:
   - Home: index.md
   - My Local Dev Environment: devEnv.md
   - Functions:
-      - Functions - Getting Started: functions/index.md
+      - Getting Started: functions/index.md
       - Oauth2 Tokens: functions/auth.md
       - Excel/CSV Files: functions/excel.md
-      - General Stuff: functions/general.md
   - REST APIs:
-      - REST APIS - Getting Started: rest/index.md
+      - Getting Started: rest/index.md
   - BigQuery:
-      - BigQuery - Getting Started: bigquery/index.md
+      - Getting Started: bigquery/index.md

@@ -1,4 +1,4 @@
-# Functions - Getting Started
+# Getting Started
 
 > Don't reinvent the wheel, just realign it.
 
@@ -10,7 +10,7 @@ Here are three things I end up doing a lot.
 
 2. Using a [JSON Web Token](https://jwt.io/) and a library like [Axios](https://axios-http.com/) to interact with [REST APIs](https://restfulapi.net/)
 
-3. Formatting and exporting [JSON](https://www.json.org/json-en.html) based data to csv or excel files
+3. Formatting and exporting [JSON](https://www.json.org/json-en.html) based data to CSV or Excel files
 
 ## The Loop and Iteration
 
