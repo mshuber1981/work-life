@@ -58,8 +58,7 @@ nav:
   - Functions:
       - Functions - Getting Started: functions/index.md
       - Oauth2 Tokens: functions/auth.md
-      - CSV Files: functions/csv.md
-      - Excel Files: functions/excel.md
+      - Excel/CSV Files: functions/excel.md
       - General Stuff: functions/general.md
   - REST APIs:
       - REST APIS - Getting Started: rest/index.md
