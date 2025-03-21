@@ -33,15 +33,14 @@ npm run test
 ```
 
 ```bash
-PASS  ./requirements.test.js
-   ✓ Checking for Vault CLI... (13 ms)
-   ✓ Checking for Google Cloud CLI... (901 ms)
+ PASS  test/general.test.js
+ PASS  test/requirements.test.js
 
-   Test Suites: 1 passed, 1 total
-   Tests:       2 passed, 2 total
-   Snapshots:   0 total
-   Time:        1.161 s
-   Ran all test suites.
+Test Suites: 2 passed, 2 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        2.005 s
+Ran all test suites.
 ```
 
 ## CLI examples
