@@ -64,6 +64,8 @@ Python is a programming language that lets you work quickly and integrate system
 
 MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file. [^6]
 
+I used MkDocs to create this site, and I have used it to create Developer documentation at work.
+
 ### Getting started with MkDocs
 
 1. Requirements - [https://www.mkdocs.org/user-guide/installation/#requirements](https://www.mkdocs.org/user-guide/installation/#requirements)
