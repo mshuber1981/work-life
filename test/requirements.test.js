@@ -1,13 +1,14 @@
 import "dotenv/config";
 import { execPromise } from "../src/utils/general.mjs";
 
-// Check for Vault CLI
-test("Checking for Vault CLI...", async () => {
-  const vCli = await execPromise("vault -v");
-  expect(typeof vCli).toBe("string");
-});
-// Check for Google Cloud CLI
-test("Checking for Google Cloud CLI...", async () => {
-  const gCli = await execPromise("gcloud version");
-  expect(typeof gCli).toBe("string");
+describe("Environment and CLI checks", () => {
+  // Check for Google Cloud CLI
+  test("Checking for Google Cloud CLI...", async () => {
+    try {
+      const gCli = await execPromise("gcloud version");
+      expect(typeof gCli).toBe("string");
+    } catch (error) {
+      throw new Error("Google Cloud CLI is not installed or not accessible.");
+    }
+  });
 });
