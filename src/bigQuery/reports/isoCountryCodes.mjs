@@ -20,50 +20,35 @@ const isoCountryCodes = async () => {
     let data;
     const [job] = await bigquery.createQueryJob(query);
     const [result] = await job.getQueryResults();
-    console.log(result);
-    spinner.success();
-    // if (result.data.length !== 0) {
-    //   // Create workbook
-    //   const workbook = utils.book_new();
-    //   const data = [];
-    //   spinner.success();
-    //   result.data.forEach((element) => {
-    //     const tempObj = {};
-    //     tempObj["Repo Name"] = element.name;
-    //     tempObj["Description"] = element.description;
-    //     tempObj["Homepage"] = element.homepage;
-    //     data.push(tempObj);
-    //   });
-    //   // Create worksheet
-    //   const worksheet = utils.json_to_sheet(data);
-    //   // Add hyperlinks to worksheet
-    //   for (let index = 0; index < result.data.length; index++) {
-    //     const element = result.data[index];
-    //     worksheet[`A${index + 2}`].l = {
-    //       Target: element.html_url,
-    //     };
-    //     worksheet[`C${index + 2}`].l = {
-    //       Target: element.homepage,
-    //     };
-    //   }
-    //   // Append NP worksheets to workbook
-    //   utils.book_append_sheet(workbook, worksheet, "Repos");
-    //   // Export workbook
-    //   console.log(
-    //     chalk.green(`Exporting results to ${ghUserName}_GitHub_repos.xlsx`)
-    //   );
-    //   writeFile(workbook, `${ghUserName}_GitHub_repos_${timeStamp()}.xlsx`);
-    // } else {
-    //   spinner.success();
-    //   console.log(`${ghUserName} doesn't have any public repositories yet. - ${chalk.underline("https://github.com/" + ghUserName)}`);
-    // }
+    spinner
+      .success()
+      .info(
+        `ISO Country Codes successfully queried from ${table} table at ${timeStamp()}`
+      );
+    // Create workbook
+    const workbook = utils.book_new();
+    // Worksheet
+    data = [...result];
+    const worksheet = utils.json_to_sheet(data);
+    // Add hyperlinks to worksheet
+    for (let index = 0; index < data.length; index++) {
+      const element = data[index];
+      worksheet[`B${index + 2}`].l = {
+        Target: `https://www.iso.org/obp/ui/#iso:code:3166:${element.Two_Char_Code}`,
+      };
+    }
+    // Append NP worksheet to workbook
+    utils.book_append_sheet(workbook, worksheet, "ISO Country Codes");
+    // Export workbook
+    console.log(
+      chalk.green(
+        `Exporting results to ISO_Country_Codes.xlsx at ${timeStamp()}`
+      )
+    );
+    writeFile(workbook, `ISO_Country_Codes_${timeStamp()}.xlsx`);
   } catch (error) {
     spinner.error();
     console.log(error);
-    
-    // console.log(
-    //   `${chalk.red(error.response.status)}: ${error.response.statusText}`
-    // );
   }
   await reportsStayOrGo();
 };

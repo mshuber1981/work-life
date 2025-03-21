@@ -26,7 +26,11 @@ const ghRepos = async () => {
       // Create workbook
       const workbook = utils.book_new();
       const data = [];
-      spinner.success();
+      spinner
+        .success()
+        .info(
+          `GitHub repos successfully fetched for ${ghUserName} at ${timeStamp()}`
+        );
       result.data.forEach((element) => {
         const tempObj = {};
         tempObj["Repo Name"] = element.name;
@@ -50,17 +54,31 @@ const ghRepos = async () => {
       utils.book_append_sheet(workbook, worksheet, "Repos");
       // Export workbook
       console.log(
-        chalk.green(`Exporting results to ${ghUserName}_GitHub_repos.xlsx`)
+        chalk.green(
+          `Exporting results to ${ghUserName}_GitHub_repos.xlsx at ${timeStamp()}`
+        )
       );
       writeFile(workbook, `${ghUserName}_GitHub_repos_${timeStamp()}.xlsx`);
     } else {
       spinner.success();
-      console.log(`${ghUserName} doesn't have any public repositories yet. - ${chalk.underline("https://github.com/" + ghUserName)}`);
+      console.log(
+        `${ghUserName} doesn't have any public repositories yet. - ${chalk.underline(
+          "https://github.com/" + ghUserName
+        )}`
+      );
     }
   } catch (error) {
     spinner.error();
-    console.log(`${chalk.red(error.response.status)}: ${error.response.statusText}`);
-    console.log(`Are you sure ${chalk.yellow(ghUserName)} is a valid GitHub username? - ${chalk.underline("https://github.com/" + ghUserName)}`);
+    console.log(
+      `${chalk.red(error.response.status)}: ${error.response.statusText}`
+    );
+    console.log(
+      `Are you sure ${chalk.yellow(
+        ghUserName
+      )} is a valid GitHub username? - ${chalk.underline(
+        "https://github.com/" + ghUserName
+      )}`
+    );
   }
   await reportsStayOrGo();
 };
