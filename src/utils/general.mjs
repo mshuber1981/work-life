@@ -14,9 +14,7 @@ export const timeStamp = () => {
 };
 
 // Run a terminal command and then wait for/return the output
-export const execPromise = (
-  command = isRequired("Terminal Command (string)")
-) => {
+export const execPromise = (command) => {
   return new Promise(function (resolve, reject) {
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -35,9 +33,4 @@ export const execPromise = (
 // Sleep/pause
 export const sleep = (ms = 1000) => new Promise((r) => setTimeout(r, ms));
 
-// Require a parameter
-export const isRequired = (param) => {
-  throw new Error(`${param} is required!`);
-};
-
-export default isRequired;
+export default timeStamp;

@@ -1,4 +1,14 @@
-import { sleep, timeStamp } from "../src/utils/general.mjs";
+import { describe, expect, jest } from "@jest/globals";
+import { execPromise, sleep, timeStamp } from "../src/utils/general.mjs";
+
+// Mock execPromise
+jest.mock("../src/utils/general.mjs", () => {
+  const actual = jest.requireActual("../src/utils/general.mjs");
+  return {
+    ...actual,
+    execPromise: jest.fn().mockResolvedValue("mocked output"),
+  };
+});
 
 describe("General Utils", () => {
   describe("sleep", () => {
@@ -39,6 +49,20 @@ describe("General Utils", () => {
         now.getUTCDate() < 10 ? `0${now.getUTCDate()}` : now.getUTCDate();
       const expected = `${month}${day}${now.getFullYear()}`;
       expect(time).toBe(expected);
+    });
+  });
+  describe("execPromise", () => {
+    it("should be a function", () => {
+      expect(typeof execPromise).toBe("function");
+    });
+    it("should return a promise", () => {
+      // test if execPromise returns a promise
+      expect(execPromise("echo test")).toBeInstanceOf(Promise);
+    });
+    it("should resolve with the output of the command", async () => {
+      // test if execPromise resolves with the mocked output
+      const output = await execPromise("echo test");
+      expect(output).toBe("test");
     });
   });
 });
