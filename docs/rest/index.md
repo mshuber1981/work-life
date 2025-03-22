@@ -1,4 +1,4 @@
-# REST APIs - Getting Started
+# Getting Started
 
 What is a REST API? - [https://restfulapi.net/](https://restfulapi.net/)
 
@@ -32,7 +32,7 @@ try {
 ```bash
 Fetching GitHub projects...
 My GitHub project names:
-CRA-Starter, FCC-Front-End-Libraries-Projects, FCC-JavaScript-Algorithms-and-Data-Structures-Projects, FCC-Responsive-Web-Design-Projects, github-react-portfolio-template, mshuber1981, next-starter, Portfolio, react-contact-form, work-life
+github-react-portfolio-template, mshuber1981, Portfolio, react-contact-form, vite-starter, work-life
 ```
 
 ## My work life in JSON
