@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clientCredentials } from 'axios-oauth-client'
+import { clientCredentials } from "axios-oauth-client";
 import isRequired from "./general.mjs";
 import { execPromise } from "./general.mjs";
 
@@ -30,8 +30,9 @@ export const getToken = async (
     );
     auth = await getAuth(`${secrets.data[clientIdKey]}/.default`);
   } catch (error) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
+
   return auth;
 };
 
