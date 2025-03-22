@@ -1,6 +1,6 @@
 {
   "name": "work-life",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "Automating my work life...",
   "main": "index.js",
   "type": "module",
