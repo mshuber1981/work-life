@@ -6,7 +6,7 @@
 
 Here are three things I end up doing a lot.
 
-1. Using [Node.js](https://nodejs.org/en) to read csv files
+1. Using [Node.js](https://nodejs.org/en) to read csv or Excel files
 
 2. Using a [JSON Web Token](https://jwt.io/) and a library like [Axios](https://axios-http.com/) to interact with [REST APIs](https://restfulapi.net/)
 
